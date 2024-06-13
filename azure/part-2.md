@@ -1,6 +1,6 @@
 # Azure Fundamentals Part 2: Describe Azure architecture and services
 
-## Module 1: Describe Core Architectural components of Azure
+# Module 1: Describe Core Architectural components of Azure
 
 **Azure Account Hierarchies:**
 
@@ -11,7 +11,7 @@ In a single Azure account, you can create multiple subscriptions. Each subscript
 This hierarchy allows you to manage access, billing, and resources at different levels.
 
 
-### Task 1: Explore Learn sandbox
+## Task 1: Explore Learn sandbox
 
 - **Azure Sandbox:** A free, temporary Azure environment that you can use to complete exercises in Microsoft Learn.
 
@@ -32,7 +32,7 @@ Core components of Azure can be divided into 2 categories:
 - Physical infrastructure
 - Management infrastructure
 
-### Lesson 1: Describe Azure physical infrastructure
+## Lesson 1: Describe Azure physical infrastructure
 
 
 - Datacenters - same as large corporate datacenters.
@@ -60,7 +60,7 @@ Core components of Azure can be divided into 2 categories:
 
 - Sovereign Regions: These are regions that are dedicated to the government or military. These regions are isolated from the rest of Azure. Such as US DoD Central.
 
-### Lesson 2: Describe Azure management infrastructure
+## Lesson 2: Describe Azure management infrastructure
 
 - **Azure Resource and Resource Group:** Resource groups are containers that hold related resources for an Azure solution. A resource group can include resources that are located in different regions. 
 
@@ -83,9 +83,9 @@ Core components of Azure can be divided into 2 categories:
     This is useful to create a hierarchy that applies a policy.
 
 
-## Module 2: Describe Zaure compute and network services
+# Module 2: Describe Zaure compute and network services
 
-### Lesson 1: Describe Azure virtual machines
+## Lesson 1: Describe Azure virtual machines
 
 This is Infrastructure as a Service (IaaS) offering. You can create and manage virtual machines in Azure.
 
@@ -138,7 +138,7 @@ Availability sets do this by grouping VMs in two ways:
 
 - Lift and shift: Migrate existing applications to Azure VMs without changing the code.
 
-#### Task 1: Create a VM in Azure
+### Task 1: Create a VM in Azure
 
 - Run the following command to create a VM in Azure:
 
@@ -162,11 +162,11 @@ az vm extension set \
 - By default the VM has all teh port forwarded to the virtual network for that vm. To allow traffic to the VM, you need to open the port in the network security group. Do this step from the azure portal. 
 Then access the network.
 
-### Lesson 2: Describe Azure virtual desktop
+## Lesson 2: Describe Azure virtual desktop
 
 Azure Virtual Desktop is a desktop and app virtualization service that runs on the cloud. It is the only virtual desktop infrastructure (VDI) that delivers simplified management, multi-session Windows 10, optimizations for Office 365 ProPlus, and support for Remote Desktop Services (RDS) environments.
 
-### Lesson 3: Describe Azure containers
+## Lesson 3: Describe Azure containers
 
 VMs has a basic limitation that is Single OS per VM. Containers are a solution to this problem. Containers are a lightweight, portable, and consistent way to run applications across different environments.
 
@@ -187,7 +187,7 @@ Container is also rapid to start and stop. This is because the container shares 
 - Microservices architecture.
 - CI/CD pipeline.
 
-### Lesson 4: Describe Azure functions
+## Lesson 4: Describe Azure functions
 
 Azure Functions is a serverless compute service that lets you run event-triggered code without having to explicitly provision or manage infrastructure.
 
@@ -209,7 +209,7 @@ Azure Functions is a serverless compute service that lets you run event-triggere
 
 - When you want to run code on a schedule.
 
-### Lesson 5: Describe application hosting options
+## Lesson 5: Describe application hosting options
 
 There are multiple ways to host applications in Azure:
 
@@ -238,7 +238,7 @@ App service handles most of the infrastructure decisions for the customer. Like:
 - The built-in load balancing and traffic manager.
 
 
-### Lesson 6: Describe Azure virtual networking
+## Lesson 6: Describe Azure virtual networking
 
 Azure Virtual Network (VNet) is the fundamental building block for your private network in Azure. VNet enables many types of Azure resources, such as Azure Virtual Machines (VM), to securely communicate with each other, the internet, and on-premises networks.
 
@@ -280,7 +280,7 @@ By default Azure routes traffic between the subnets on any connected virtual net
 
 **Connect Virtual networks:** User can link virtual networks together by using virtual network peering. This allows resources in different virtual networks to communicate with each other. 
 
-### Task 2: Create a virtual network in Azure
+## Task 2: Create a virtual network in Azure
 
 - List all available VMs in your resource group:
 
@@ -336,7 +336,7 @@ curl --connect-timeout 5 http://$IPADDRESS
 
 This will show the HTML content of the default web page.
 
-### Lesson 7: Describe Azure Virtual Private Network (VPN)
+## Lesson 7: Describe Azure Virtual Private Network (VPN)
 
 A VPN uses an encrypted within another network. This is typically deployed to connect two or more trusted private networks to one another over an untrusted network.
 
@@ -374,7 +374,7 @@ There are a few waus to maximize the resiliency of your VPN gateway.
 
 - Active-Active: You can deploy VPN gateways in an active-active configuration. The load is distributed using BGP routing protocol. Here we assign a unique public IP address to each VPN gateway instance, then create separate tunnels from the on-premises VPN device to each public IP address.
 
-### Lesson 8: Describe Azure ExpressRoute
+## Lesson 8: Describe Azure ExpressRoute
 
 Azure ExpressRoute lets you extend your on-premises networks into the Microsoft cloud over a private connection facilitated by a connectivity provider. This connection is called an ExpressRoute circuit. Connectivity can be from an any-to-any (IP VPN) network, a point-to-point Ethernet network, or a virtual cross-connection through a connectivity provider at a co-location facility.
 
@@ -394,7 +394,7 @@ Azure ExpressRoute lets you extend your on-premises networks into the Microsoft 
 
 > Main reason behind using ExpressRoute is to have a dedicated, private connection to Azure. This is more secure and reliable than a public internet connection.
 
-### Describe Azure DNS
+## Describe Azure DNS
 
 This is a DNS service for DNS domains that resolution by using Microsoft Azure infrastructure. 
 
@@ -409,7 +409,7 @@ This is a DNS service for DNS domains that resolution by using Microsoft Azure i
 Azure also supports private DNS domains. This allows you to use your own custom domain names in Azure.
 
 
-## Module 3: Describe Azure Storage Services
+# Module 3: Describe Azure Storage Services
 
 A storage account provides a unique namespace in Azure for clients' data. Azure Storage's data can be accessible from anywhere in the world over HTTP or HTTPS. 
 
@@ -429,7 +429,7 @@ A storage account provides a unique namespace in Azure for clients' data. Azure 
 | Premium file shares       | Azure Files                                                                   | LRS, ZRS                              | Premium storage account type for file shares only. Recommended for enterprise or high-performance scale applications. Use this account type if you want a storage account that supports both Server Message Block (SMB) and NFS file shares. |
 | Premium page blobs        | Page blobs only                                                               | LRS                                   | Premium storage account type for page blobs only.                                                                                                                             |
 
-### Lesson 1: Describe Azure Storage Redundancy Options
+## Lesson 1: Describe Azure Storage Redundancy Options
 
 When deciding which redundancy option is best for The client's data, consider the following factors:
 
@@ -470,7 +470,7 @@ By default the GRS and GZRS replication provides read-write access to the data i
 
 > :paperclip: Remember that the data in your secondary region may not be up-to-date due to RPO.
 
-### Lesson 2: Describe Azure Storage Services
+## Lesson 2: Describe Azure Storage Services
 
 Azure provides platform includes the following data services:
 
@@ -536,12 +536,12 @@ Azure provides platform includes the following data services:
 
     Block-level storage volumes that are managed by Azure and used with Azure Virtual Machines. Azure managed disks are the new and recommended disk storage offering for use with Azure Virtual Machines.
 
-### Task 1: Create an Azure Storage blob
+## Task 1: Create an Azure Storage blob
 
 This task is done from the Azure portal with UI. 
 
 
-### Lesson 3: Describe Azure data migration options
+## Lesson 3: Describe Azure data migration options
 
 Azure has 2 options for this:
 
@@ -584,7 +584,7 @@ During export:
 - Security and compliance.
 - Migrate back to on-premises or to another colud.
 
-### Lesson 4: Indentify Azure file movement options.
+## Lesson 4: Indentify Azure file movement options.
 
 In addition to large scale migration using Azure Data Box, Azure also provides the following options for moving files to and from Azure in small scale:
 
@@ -606,3 +606,188 @@ With Azure file sync the client can:
 - Replace a failed local server by installing Azure File Sunc.
 - Configure cloud tiering so the most frequently accessed files are stored locally and the rest are stored in Azure.
 
+# Module 4: Describe Azure Identity Access and Security
+
+## Lesson 1: Describe Azure Directory Services
+
+### Microsoft Entra ID
+
+This is a directory service that enables the client to sign in and access Microsoft cloud applications and cloud-based application that the client has developed. Microsoft Entra ID can also help you maintain on-premises Active Directory deployment.
+
+
+For on-premises environments, Active Director running on Windown Server provides an identity and access management service. with Microsoft Entra ID, client control the identiry accounts, but Microsoft ensures the availability and security of the service.
+
+**Who Uses Microsoft Entra ID:**
+
+- IT administrators.
+- Developers.
+- Partners.
+- Online service subscribers of Microsoft services.
+
+**What Microsoft Entra ID Provides:**
+
+- Authentication:
+    - verify identity to access resources.
+    - Self-service password reset.
+    - Multi-factor authentication.
+    - Smart lockout.
+    - Custom list of banned passwords.
+
+- Single sign-on:
+    - Access to multiple applications with a single login credential.
+    - As a user change roles or leaves the organization, access modifications are tied to that identity, not to the user.
+
+- Application management: Client can manage cloud and on-premises apps by using Microsoft Entra ID. 
+
+- Device management: Along with accounts for individual users, Microsoft Entra ID supports registration of devices. This enables devices to be managed through tools like Microsoft Intune.
+
+**Connecting on-premises Active Directory to Microsoft Entra ID:**
+
+If we have a hybrid cloud model i.e. some resources are on-premises and some are in the cloud, we can connect the on-premises Active Directory to Microsoft Entra ID. This simplifies the management of users and groups.
+
+Tool to connect on-premises Active Directory to Microsoft Entra ID:
+
+- Microsoft Entra Connect: This is a tool that connects on-premises Active Directory to Microsoft Entra ID. This tool is used to sync on-premises Active Directory to Microsoft Entra ID and use features like single sign-on, Multi-factor authentication, and self-service password reset.
+
+**Microsoft Entra Domain Services:**
+
+This is not Domain name Service. This Domain means scope of access. This is a managed domain service that provides group policy, LDAP, and Kerberos/NTLM authentication. This is useful for lift-and-shift scenarios where you want to move applications to Azure without changing the code.
+
+**How does Microsoft Entra Domain Services work:**
+
+when client create a Microsoft Entra Domain Services managed domain, Microsoft creates two domain controllers in the Azure virtual network. These domain controllers are managed by Microsoft. The client can then join VMs to the managed domain. The VMs can be Windows Server or Linux.
+
+## Lesson 2: Describe Azure authentication methods.
+
+Diagram to compare security level with convenience:
+
+![Diagram to compare security level with convenience](https://learn.microsoft.com/en-us/training/wwl-azure/describe-azure-identity-access-security/media/passwordless-convenience-security-30321b4d.png)
+
+**Single Sign-On (SSO):** SSO enables a user to sign in one time and use that credential to access multiple rewources and applications from different providers. This is useful for users who need to access multiple applications. For SSO to work different applications and providers must trust the initial authenticator.
+
+**Multi-factor Authentication (MFA):** MFA is a security system that requires more than one method of authentication from independent categories of credentials to verify the user's identity for a login or other transaction. This is useful for users who need to access sensitive data.
+
+Elements of MFA:
+
+- Something the user knows (password).
+- Something the user has (security token).
+- Something the user is (biometric verification).
+
+Passwordless authentication: This is a method of authentication that does not require the user to enter a password. This is useful for users who need to access applications quickly and securely.
+
+Microsoft's offering for passwordless authentication:
+
+- Windows Hello for Business.
+- Microsoft Authenticator app.
+- FIDO2 security keys.
+
+## Lesson 3: Describe Azure external identities
+
+External Identities is a set of capabilities that enables organizations to secure and manage customers and partners. This is useful for organizations that need to provide access to applications and resources to external users.
+
+Here, without needing to provide user your organization's identity, user can bring their own identity. This might be a social media account, a personal email account, or a corporate account. The external user's identity provider manages their identity, while the organization manages access to resources.
+
+## Lesson 4: Describe Azure conditional access
+
+Conditional access is a tool that Microsoft Entra ID uses to allow (or deny) access to resources based on identity signals. This signals include 3 things:
+
+- Who the user is.
+- Where the user is.
+- What device they are using.
+
+The following diagram shows how conditional access flows: 
+
+![Conditional access flow](https://learn.microsoft.com/en-us/training/wwl-azure/describe-azure-identity-access-security/media/conditional-access-9bd268b8.png)
+
+**When to use conditional access:**
+
+- Require multifactor authentication for users who are accessing resources from outside the corporate network.
+
+- Require access to services only through approved client applications.
+
+- Require users to access only from devices that are compliant with security policies.
+
+- Block access from untrusted locations or sources.
+
+## Lesson 5: Describe Azure role-based access control
+
+Instead of giving permission to an individual user, you can assign permissions to a role, and then add users to that role. This is useful for organizations that need to manage access to resources.
+
+**How is role-based access control applied to resources:**
+
+Role based access control is applied to a scope, which is
+- a single resource
+- a resource group
+- a subscription
+- a management group. 
+The role assignment is inherited by all child resources.
+
+There are 3 types of roles in Azure:
+
+- Observers.
+- Contributors. (User managing resources)
+- Administrators. (User managing access)
+
+Following figure shows the relationship between the roles:
+
+![Relationship between the roles](https://learn.microsoft.com/en-us/training/wwl-azure/describe-azure-identity-access-security/media/role-based-access-scope-4b12a8f3.png)
+
+Azure RBAC is hierarchical, meaning that the permissions are inherited from the parent scope. For example, if a user has a role assignment at the subscription level, the user will have the same role assignment at the resource group level.
+
+**How RBAC works:** Azure RBAC is enforced on any action that is initiated for a resource That must be passed through Azure Resource Manager. This includes actions initiated through the Azure portal, Azure CLI, Azure PowerShell, Azure SDKs, and Azure Resource Manager templates.
+
+We access Resource Manager from Azure portal, Azure CLI, Azure PowerShell, and Azure SDKs.
+
+Azure RBAC uses allow model. When you're assigned a role, Azure RBAC allows you to perform actions within the scope of that role. If one role assignment grants you a read role to a resource and a different role assignment grants you a write role to the same resource, you have both read and write permissions.
+
+## Lesson 6: Zero trust model
+
+Zero trust is a security model that assumes breach and verifies each request as though it originates from an uncontrolled network. This is useful for organizations that need to secure their resources.
+
+Guideliens for implementing zero trust:
+
+- Verify explicitly.
+- Use least privileged access.
+- Assume breach.
+
+> Traditionally, it was assumed that corporate network is safe and anything outside the network is unsafe. Zero trust model assumes that the network is always hostile.
+
+## Lesson 7: Defense in depth
+
+The objective of defense-in-depth is to protect information and prevent it from being stolen by those who aren't authorized to access it. This is useful for organizations that need to secure their resources.
+
+Defense-in-depth is a security strategy that uses multiple layers of security controls to protect resources. **This strategy is based on the principle that a single layer of security is not enough to protect the resources**.
+
+**Elements of defense-in-depth:**
+
+- **Physical security:** This includes locks, security guards, and surveillance cameras.
+
+- **Identity and access management:** This controls access to infrastructure and change control.
+
+    At this layer, it's important to:
+
+    - Control access to infrastructure and change control.
+    - Use single sign-on (SSO) and multifactor authentication.
+    - Audit events and changes.
+
+- **Perimeter security:** This includes firewalls, intrusion detection systems, and intrusion prevention systems. This layer uses DDoS protection.
+
+- **Network security:** This includes network segmentation, virtual private networks, and secure gateways.
+
+    At this layer, it's important to:
+
+    - Limit communication between resources.
+    - Deny by default.
+    - Restrict inbound internet access and limit outbound access where appropriate.
+    - Implement secure connectivity to on-premises networks.
+
+- **Compute Layer:** This secures access to virtual machines.
+
+    At this layer, it's important to:
+
+    - Secure Access to Virtual Machines.
+    - Implement endpoint protection on devices and keep systems up to date.
+
+- **Application security:** This helps ensure that applications are secure and free of security vulnerabilities.
+
+- **Data security:** This controls access to business and customer data that you need to protect.

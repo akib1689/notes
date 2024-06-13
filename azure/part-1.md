@@ -2,13 +2,13 @@
 
 #  Azure Fundamentals Part 1: Describe Cloud Concepts
 
-## Module 1: Describe Cloud Computing
+# Module 1: Describe Cloud Computing
 
-### Lesson 1: Introduction to Cloud Computing
+## Lesson 1: Introduction to Cloud Computing
 
 **Cloud Computing:** Cloud computing is the delivery of computing services—including servers, storage, databases, networking, software, analytics, and intelligence—over the Internet (“the cloud”) to offer faster innovation, flexible resources, and economies of scale. You typically pay only for cloud services you use, helping you lower your operating costs, run your infrastructure more efficiently, and scale as your business needs change.
 
-### Lesson 2: Describe the shared responsibility model
+## Lesson 2: Describe the shared responsibility model
 
 With shared responsibility model the different security responsibility is shared with cloud provider and the consumer. 
 
@@ -24,7 +24,7 @@ With shared responsibility model the different security responsibility is shared
 
 **SaaS:** Software as a Service. Puts most of the responsibility on the cloud provider. Example: Office 365
 
-### Lesson 3: Define cloud models
+## Lesson 3: Define cloud models
 
 There are three cloud models:
 1. Private Cloud
@@ -49,7 +49,7 @@ Organizations don't have control over rewources and security | Organizations are
 
 **Important tools:** Azure Arc, Azure VMware Solution, Azure Stack - These helps to manage different cloud resources. either solely on Azure or on-premises or hybrid structure.
 
-### Lesson 4: Describe the consumption based model
+## Lesson 4: Describe the consumption based model
 
 When managing IT services, There are two types of costs:
 1. Capital expenditure (CapEx)
@@ -61,7 +61,7 @@ When managing IT services, There are two types of costs:
 
 **Consumption-based model:** In a consumption-based model, you pay for cloud services as you use them. This model is an operational expenditure (OpEx) because you pay for the services you use, rather than for the hardware and software you purchase upfront.
 
-## Module 2: Benefits of Cloud Computing
+# Module 2: Benefits of Cloud Computing
 
 **Benefits of Cloud Computing:** Cloud computing offers a number of benefits, including:
 
@@ -78,11 +78,11 @@ When managing IT services, There are two types of costs:
 **Important terms:** Total Cost of Ownership (TCO), Service Level Agreement (SLA)
 
 
-## Module 3: Describe cloud services types
+# Module 3: Describe cloud services types
 
 Learn about how each cloud service type offers flexibility and how the shared responsibility model applies to each.
 
-### Lesson 1: Describe Infrastructure as a Service (IaaS)
+## Lesson 1: Describe Infrastructure as a Service (IaaS)
 
 - Most flexible cloud service type
 - Provides most amount of control
@@ -102,7 +102,7 @@ Basically IaaS is like renting a virtual machine and what we do with it is our r
 - **Lift and Shift:** Say we have a physical datacenter in our on-prem environment and we want to move it to the cloud. We can use IaaS to create a virtual machine and move the data to the cloud.
 - **Testing and development:** We can use IaaS to create a virtual machine and test our applications.
 
-### Lesson 2: Describe Platform as a Service (PaaS)
+## Lesson 2: Describe Platform as a Service (PaaS)
 
 Middle ground between IaaS and SaaS. Think of PaaS as a domain joined machine i.e. IT maintains the device with regular updates, patches and refreshes.
 
@@ -121,7 +121,7 @@ Well suited for complete development environment without the headache of maintai
 
 - **Analytics or business intelligence:** We can use PaaS to create a data warehouse and run analytics on it.
 
-### Lesson 3: Describe Software as a Service (SaaS)
+## Lesson 3: Describe Software as a Service (SaaS)
 
 Most complete cloud service model from a product perspective. In SaaS, we are renting or using a fully developed application. 
 
