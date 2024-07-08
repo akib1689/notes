@@ -34,10 +34,12 @@ Kubernetes is made up of a number of components that work together to provide th
 
 > It is recommended to run only one container per pod. 
 
-## How to use kubernetes in Production environment
+Each pod is assigned a unique IP address within the cluster, allowing applications to use ports without the risk of conflict. However, if the pod is recreated it will get a new IP address so if we use ip address to communicate between pods, it will not work. **Solution to this is to use service.**
 
-First we need to consider the following points:
+- **Services:** A Kubernetes Service is an abstraction which defines a logical set of Pods and a policy by which to access them. Services enable a loose coupling between dependent Pods.
 
-- **Availability:** High availability includes:
-    - Separate the control plane from the worker nodes.
-    - Replicate the control plane.
+- **Ingress:** An API object that manages external access to services in a cluster, typically HTTP. External access go through the Ingress controller.
+
+- **ConfigMap:** A ConfigMap is an API object used to store **non-confidential data** in key-value pairs.
+
+- **Secrets:** A Secret is an API object used to store **sensitive data**, such as passwords, OAuth tokens, and ssh keys.
