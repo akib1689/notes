@@ -63,9 +63,3 @@ If there are no errors, you can reboot your system to auto mount the directory a
 ## Conclusion
 
 In this guide, you learned how to auto mount a directory at startup in Ubuntu Server 22.04. You can now easily auto mount any directory at startup in Ubuntu Server 22.04.
-
-
-
-
-
-
