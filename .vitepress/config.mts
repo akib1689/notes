@@ -4,6 +4,38 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "My Notes",
   description: "Current Notes and of my knowledge",
+  head:[
+    ['link', 
+      { rel: 'icon', href: '/favicon_io/favicon.ico', sizes: '16x16' }
+    ],
+    ['link', 
+      { rel: 'icon', href: '/favicon_io/favicon-32x32.png', sizes: '32x32' }
+    ],
+    ['link', 
+      { rel: 'apple-touch-icon', href: '/favicon_io/apple-touch-icon.png' }
+    ],
+    ['link', 
+      { rel: 'manifest', href: '/favicon_io/site.webmanifest' }
+    ],
+    ['meta', 
+      { 
+        name: 'msapplication-TileImage', 
+        content: '/favicon_io/android-chrome-192x192.png' 
+      }
+    ],
+    ['meta', 
+      { name: 'msapplication-TileColor', 
+        content: '#ffffff' 
+      }
+    ],
+    ['link', 
+      { href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap' }
+    ],
+  ],
+
+  base: '/Notes/',
+
+
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
