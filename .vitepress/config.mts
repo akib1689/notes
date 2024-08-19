@@ -6,21 +6,21 @@ export default defineConfig({
   description: "Current Notes and of my knowledge",
   head:[
     ['link', 
-      { rel: 'icon', href: '/favicon_io/favicon.ico', sizes: '16x16' }
+      { rel: 'icon', href: '/Notes/favicon_io/favicon.ico', sizes: '16x16' }
     ],
     ['link', 
-      { rel: 'icon', href: '/favicon_io/favicon-32x32.png', sizes: '32x32' }
+      { rel: 'icon', href: '/Notes/favicon_io/favicon-32x32.png', sizes: '32x32' }
     ],
     ['link', 
-      { rel: 'apple-touch-icon', href: '/favicon_io/apple-touch-icon.png' }
+      { rel: 'apple-touch-icon', href: '/Notes/favicon_io/apple-touch-icon.png' }
     ],
     ['link', 
-      { rel: 'manifest', href: '/favicon_io/site.webmanifest' }
+      { rel: 'manifest', href: '/Notes/favicon_io/site.webmanifest' }
     ],
     ['meta', 
       { 
         name: 'msapplication-TileImage', 
-        content: '/favicon_io/android-chrome-192x192.png' 
+        content: '/Notes/favicon_io/android-chrome-192x192.png' 
       }
     ],
     ['meta', 
