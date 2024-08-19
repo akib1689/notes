@@ -175,3 +175,56 @@
   content: "📌 ";
   font-weight: bold;
 }
+
+/* Common styles for all custom blocks */
+.custom-block.github-alert {
+  border-left-width: 4px;
+  border-left-style: solid;
+  padding: 10px 15px;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+
+/* Tip callout */
+.custom-block.github-alert.tip {
+  border-left-color: #42b983; /* Green */
+  background-color: rgba(66, 185, 131, 0.05); /* Light green background */
+}
+
+/* Warning callout */
+.custom-block.github-alert.warning {
+  border-left-color: #ffae42; /* Orange */
+  background-color: rgba(255, 174, 66, 0.05); /* Light orange background */
+}
+
+/* Danger callout */
+.custom-block.github-alert.danger {
+  border-left-color: #ff4d4f; /* Red */
+  background-color: rgba(255, 77, 79, 0.05); /* Light red background */
+}
+
+/* Caution callout */
+.custom-block.github-alert.caution {
+  border-left-color: #faad14; /* Yellow/Amber */
+  background-color: rgba(250, 173, 20, 0.05); /* Light amber background */
+}
+
+/* Note callout */
+.custom-block.github-alert.note {
+  border-left-color: #1890ff; /* Blue */
+  background-color: rgba(24, 144, 255, 0.05); /* Light blue background */
+}
+
+/* Important callout */
+.custom-block.github-alert.important {
+  border-left-color: #722ed1; /* Purple */
+  background-color: rgba(114, 46, 209, 0.05); /* Light purple background */
+}
+
+/* Custom title styles */
+.custom-block.github-alert .custom-block-title {
+  font-weight: bold;
+  margin: 0;
+  padding-bottom: 5px;
+}
+
