@@ -1,0 +1,75 @@
+# Sample workflow file to build and deploy a Vitepress site to GitHub Pages
+
+name: Deploy Vitepress Site to GitHub Pages
+
+on:
+  # Runs on pushes targeting the `main` branch
+  # Change this to `master` if you are using the `master` as default branch
+  push:
+    branches:
+      - main
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to be able to deploy to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent run of the workflow, skipping runs queued between the run in-progress and latest queued.
+# However, 
+# ! DO NOT cancel in-progress runs, as we want to allow these production deployments to complete.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+
+# Jobs to be executed
+jobs:
+  # Build the Vitepress site
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Setup Vitepress
+        uses: actions/configure-pages@v4
+
+      - name: Install dependencies
+        run: npm ci # or yarn install or pnpm install
+
+      - name: Build the site
+        run: npm run docs:build # or yarn docs:build or pnpm docs:build
+
+      - name: Upload the build artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./.vitepress/dist
+
+  # Deploy the Vitepress site to GitHub Pages
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+      
+    needs: 
+      - build
+    
+    runs-on: ubuntu-latest
+    
+    name: Deploy
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
