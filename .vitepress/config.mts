@@ -11,6 +11,8 @@ export default defineConfig({
       { text: 'Examples', link: '/markdown-examples' }
     ],
 
+    outline: [2, 4],
+
     sidebar: [
       {
         text: 'Documentation',

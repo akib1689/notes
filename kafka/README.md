@@ -45,6 +45,10 @@ Another thing about topic is, they are immutable and durable. Once a record is p
 
 ### Topic Partitions
 
+As kafka is designed to function as a distributed system, it makes sense to divide the topics into different partitions.
+
+### Topic Replication
+
 ## Kafka Producers
 
 ## Kafka Consumers
