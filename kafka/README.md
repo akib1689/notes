@@ -30,7 +30,7 @@ Here, we will discuss the following topics:
 
 Our finished architecture will look like this:
 
-![Kafka Architecture](../images/kafka-architecture.png)
+![Kafka Architecture](../public/imageskafka-architecture.png)
 
 ## Kafka Components
 

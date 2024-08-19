@@ -120,7 +120,7 @@ You will be prompted to log in with the password you set in the `docker-compose.
 
 The admin login prompt looks like this:
 
-![Pi-hole admin login](../images/pi-hole-admin-dashboard.png)
+![Pi-hole admin login](../public/imagespi-hole-admin-dashboard.png)
 
 After logging in, you can configure Pi-hole settings, view statistics, and manage your ad-blocking lists.
 

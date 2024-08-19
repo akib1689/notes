@@ -27,7 +27,7 @@ lsblk -o NAME,UUID,FSTYPE,MOUNTPOINT
 
 Here we need to know the UUID of the drive partition that you want to auto mount. For my case all of my drives are mounted at `/mnt` 
 
-[![lsblk](../images/lsblk-output.png)](../images/lsblk-output.png)
+[![lsblk](../public/imageslsblk-output.png)](../public/imageslsblk-output.png)
 
 for other case the mount points will be empty.
 
