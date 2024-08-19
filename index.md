@@ -17,8 +17,7 @@ hero:
 features:
   - title: Azure Fundamentals
     details: Details about Azure Fundamentals and its services
-  - title: Linux administration
-    details: Details about Linux administration and how to manage Linux servers
+    link: /azure
   - title: CI-CD
     details: Details about CI-CD and how to implement CI-CD pipelines
     link: /ci-cd

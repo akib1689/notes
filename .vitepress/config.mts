@@ -52,9 +52,9 @@ export default defineConfig({
             text: 'Azure',
             items: [
               { text: 'Overview', link: '/azure/' },
-              { text: 'Part 1', link: '/azure/part-1' },
-              { text: 'Part 2', link: '/azure/part-2' },
-              { text: 'Part 3', link: '/azure/part-3' },
+              { text: 'Describe Cloud Concepts', link: '/azure/part-1' },
+              { text: 'Azure architecture and services', link: '/azure/part-2' },
+              { text: 'Azure management and governance capabilities', link: '/azure/part-3' },
             ]
           },
           {

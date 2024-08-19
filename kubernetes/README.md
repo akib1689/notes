@@ -1,4 +1,4 @@
-# Kubernetes 
+# Kubernetes
 
 Kubernetes is an open-source container orchestration platform that automates the deployment, scaling, and management of containerized applications. It is highly portable extensible platform for managing containerized workloads and services, that facilitates both declarative configuration and automation.
 
@@ -30,9 +30,9 @@ Kubernetes is made up of a number of components that work together to provide th
 
 > Every cluster has at least one worker node.
 
-- **Pods:** A pod is the smallest deployable unit of computing that you can create and manage in Kubernetes. A pod is a group of one or more containers, with shared storage/network, and a specification for how to run the containers. 
+- **Pods:** A pod is the smallest deployable unit of computing that you can create and manage in Kubernetes. A pod is a group of one or more containers, with shared storage/network, and a specification for how to run the containers.
 
-> It is recommended to run only one container per pod. 
+> It is recommended to run only one container per pod.
 
 Each pod is assigned a unique IP address within the cluster, allowing applications to use ports without the risk of conflict. However, if the pod is recreated it will get a new IP address so if we use ip address to communicate between pods, it will not work. **Solution to this is to use service.**
 
