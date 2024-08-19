@@ -25,9 +25,9 @@ Next, you will need to find the UUID of the drive partition that you want to aut
 lsblk -o NAME,UUID,FSTYPE,MOUNTPOINT
 ```
 
-Here we need to know the UUID of the drive partition that you want to auto mount. For my case all of my drives are mounted at `/mnt` 
+Here we need to know the UUID of the drive partition that you want to auto mount. For my case all of my drives are mounted at `/mnt`
 
-[![lsblk](../public/imageslsblk-output.png)](../public/imageslsblk-output.png)
+[![lsblk](../public/images/lsblk-output.png)](../public/images/lsblk-output.png)
 
 for other case the mount points will be empty.
 
@@ -44,6 +44,7 @@ Add the following line at the end of the file:
 ```bash
 UUID=<your-uuid> /mnt/mydata <Drive_type> defaults 0 0
 ```
+
 for my case the drive type is `ext4`. You can replace `<your-uuid>` with the UUID of the drive partition that you want to auto mount.
 
 ## Step 4: Save and Exit

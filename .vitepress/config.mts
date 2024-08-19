@@ -47,7 +47,6 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'Documentation',
         items: [
           {
             text: 'Azure',
@@ -74,13 +73,6 @@ export default defineConfig({
             text: 'Kubernetes',
             items: [
               { text: 'Multinode Cluster', link: '/kubernetes/multinode-cluster' },
-              {
-                text: 'Nginx',
-                items: [
-                  { text: 'Nginx Deployment', link: '/kubernetes/nginx/nginx-deployment' },
-                  { text: 'Nginx Service', link: '/kubernetes/nginx/nginx-service' }
-                ]
-              },
               { text: 'Overview', link: '/kubernetes/' }
             ]
           },
