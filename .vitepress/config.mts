@@ -40,8 +40,15 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: 'Azure', link: '/azure' },
+      { text: 'CI/CD', link: '/ci-cd' },
+      { text: 'Kafka', link: '/kafka' },
+      { text: 'Kubernetes', link: '/kubernetes' },
     ],
+
+    search:{
+      provider: 'local',
+    },
 
     outline: [2, 4],
 
@@ -97,7 +104,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/akib-89' }
     ]
   },
 

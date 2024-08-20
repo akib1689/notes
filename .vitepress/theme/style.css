@@ -228,3 +228,18 @@
   padding-bottom: 5px;
 }
 
+#local-search {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Ensure items are vertically aligned */
+}
+
+.DocSearch-Button-Container {
+  flex-grow: 1; /* Allows the search bar to expand */
+}
+
+.DocSearch-Button-Keys {
+  margin-left: 8px; /* Optional: Add some spacing between the search bar and the keys */
+  flex-shrink: 0;   /* Prevents the keys from shrinking */
+}
