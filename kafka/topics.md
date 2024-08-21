@@ -50,3 +50,7 @@ Basically a partition is replicated in multiple brokers. One of them is a leader
 > [!Tip]
 > The replication factor is tunable on the Producer Side.
 > The default replication factor is 1. This means that the partition is stored in only one broker. If the broker goes down, then the partition is lost. So, we can increase the replication factor to 2 or 3. This means that the partition is stored in 2 or 3 brokers. This way, if one broker goes down, the other brokers can still serve the partition.
+
+## Conclusion
+
+So, in this article we discussed about the kafka topics. We discussed about the topic, the partition, and the partition replication. We discussed about the partitioner and the partitioner replication. We discussed about the ordering guarantee and the leader election. We discussed about the replication factor and the retention period. We discussed about the round-robin partitioner and the key-based partitioner. We discussed about the topic as a feed or log
