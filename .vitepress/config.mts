@@ -77,6 +77,7 @@ export default defineConfig({
               { text: 'Topics', link: '/kafka/topics' },
               { text: 'Producers', link: '/kafka/producers' },
               { text: 'Consumers', link: '/kafka/consumers' },
+              { text: 'Kubernetes', link: '/kafka/kubernetes' }
             ]
           },
           {
