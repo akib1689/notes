@@ -47,13 +47,83 @@ Another thing about topic is, they are immutable and durable. Once a record is p
 
 As kafka is designed to function as a distributed system, it makes sense to divide the topics into different partitions.
 
-### Topic Replication
+> [!Warning]
+> So what is the problem if there was no partition?
+
+The problem is that, if there was no partition, then the topic would be stored in a single broker (node or a computer). This would lead to a single point of failure. If the broker goes down, then the topic is lost. So, to avoid this, we divide the topic into partitions.
+
+A partition is a unit of parallelism. A topic can have multiple partitions. Each partition is an ordered, immutable sequence of records that is continually appended to a structured commit log. Each record in a partition is assigned a unique sequential id number called the offset that uniquely identifies each record within the partition.
+
+So, partition can be thought of mulltiple channels of a single topic that lives in different brokers. This way, if one broker goes down, the other brokers can still serve the topic.
+
+![Kafka Topic Partitions](../public/images/kafka-partition.png)
+
+> [!Important]
+> So, how does kafka decide which partition to write to when a record is published to a topic?
+
+Kafka uses a partitioner to decide which partition to write to when a record is published to a topic. The default partitioner is the **round-robin** partitioner.
+
+So, there can be 2 scenarios:
+
+1. If the key is present in the record, then the partitioner uses the key to decide which partition to write to. This is called **key-based partitioning**. Basically, key passes through the hash function and the hash function decides which partition to write to. This way, all records with the same key are written to the same partition. This ensures that the order of the records is maintained. This is important when the order of the records is important. This is called **ordering guarantee**.
+
+1. If the key is not present in the record, then the partitioner uses the **round-robin** partitioner to decide which partition to write to. This is called **round-robin partitioning**. In this case, the order of the records is not maintained.
+
+### Partition Replication
+
+> [!Warning]
+> Why do we need partition replication?
+
+As discussed earlier, kafka is a distributed system. So, it would become a single point of failure if the partition is stored in a single [broker](#kafka-brokers). So, to avoid this, we replicate the partition in different brokers. This is called **partition replication**.
+
+Basically a partition is replicated in multiple brokers. One of them is a leader and the others are followers. The leader is the broker that is responsible for all read and write requests for the partition. The followers are the brokers that replicate the partition from the leader. If the leader goes down, then one of the followers becomes the leader. This is called **leader election**.
+
+> [!Note]
+> In general we don't need to worry about the leader and the followers. Kafka takes care of this for us. We only need to know that the partition is replicated in multiple brokers.
+
+**Replication Factor:** The replication factor is the number of brokers in which the partition is replicated.
+
+> [!Tip]
+> The replication factor is tunable on the Producer Side.
+> The default replication factor is 1. This means that the partition is stored in only one broker. If the broker goes down, then the partition is lost. So, we can increase the replication factor to 2 or 3. This means that the partition is stored in 2 or 3 brokers. This way, if one broker goes down, the other brokers can still serve the partition.
 
 ## Kafka Producers
+
+The producer is the process that publishes records (messages) to a topic. The producer is responsible for choosing which record to assign to which partition within the topic. The producer can also choose to receive acknowledgements from the broker when a record is successfully published.
+
+Producer and the broker communicate using the **Producer API**. The producer sends a record to the broker using the **send()** method. The send() method is an asynchronous method. This means that the producer does not wait for the broker to acknowledge the record. The producer sends the record and moves on to the next record. This is called **fire-and-forget**.
+
+> [!Tip]
+> As an application developer, we mostly work with the Producer and the Consumer API. We don't need to worry about the internals of the producer and the consumer. Mostly, we need to know how to configure the producer and the consumer.
+
+Natie Language of Kafka is Java. By default, kafka producer api gives us these classes:
+
+- KafkaProducer
+- ProducerRecord
+
+### `KafkaProducer` Class
+
+The `KafkaProducer` class is given a configuration object. This configuration object is a key-value pair. The configuration object is used to configure the producer. The configuration object is used to configure the following things:
 
 ## Kafka Consumers
 
 ## Kafka Brokers
+
+Kafka is a distributed system. It is a distributed system because it is designed to run on multiple nodes. These nodes are called brokers. A broker is a node in the kafka cluster
+
+So the physical architecture of a kafka cluster is a set of brokers. A broker is a node in the kafka cluster
+
+> [!Important]
+> So, kafka brokers are single node (which can be physical or virtual machines) in the kafka cluster running the kafka broker process.
+
+Broker does the following things:
+
+- Manage partitions
+- Handle write and read requests
+- Manage the replication of the partitions
+
+> [!Tip]
+> This broker is kept such simple by design.
 
 ## Kafka Zookeeper
 
