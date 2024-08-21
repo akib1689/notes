@@ -161,11 +161,6 @@
   font-weight: bold;
 }
 
-.custom-block.github-alert.danger .custom-block-title::before {
-  content: "🚨 ";
-  font-weight: bold;
-}
-
 .custom-block.github-alert.note .custom-block-title::before {
   content: "📒 ";
   font-weight: bold;
@@ -197,15 +192,9 @@
   background-color: rgba(255, 174, 66, 0.05); /* Light orange background */
 }
 
-/* Danger callout */
-.custom-block.github-alert.danger {
-  border-left-color: #ff4d4f; /* Red */
-  background-color: rgba(255, 77, 79, 0.05); /* Light red background */
-}
-
 /* Caution callout */
 .custom-block.github-alert.caution {
-  border-left-color: #faad14; /* Yellow/Amber */
+  border-left-color: #ff4d4f; /* Yellow/Amber */
   background-color: rgba(250, 173, 20, 0.05); /* Light amber background */
 }
 

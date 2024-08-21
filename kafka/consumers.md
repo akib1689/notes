@@ -42,7 +42,33 @@ The `ConsumerRecord` class is used to read a record. The record is a key-value p
 
 As a subscriber, we can do whatever we want with the record. We can process the record, store the record in a database, send the record to another topic, etc.
 
-> [!Danger]
-> Lets say we have multiple producers producing the records. Then Kafka has no problem in distributing the records to the consumers. But, if we have multiple consumers consuming the records, then we need to be careful. In short, consumers need to **scale**. 
+## Consumer Scaling
 
+> [!Caution]
+> Lets say we have multiple producers producing the records. Then Kafka has no problem in distributing the records to the consumers. But, if we have multiple consumers consuming the records, then we need to be careful. In short, consumers need to **scale**.
 
+Say, we have 1 consumer listening from 3 partitions of a topic. Then, if one consumer (same application in a different pod) is added then kafka will automatically try to rebalance the partitions. This is called **rebalancing**. This is done to ensure that each consumer reads from all the consumer is distributed evenly. if we add another instance of the consumer, then kafka will again **rebalance** the partitions, and now each consumer will read from 1 partitions of the topic. Now consider, if we add 4th consumer, then kafka will again **rebalance** the partitions, and the new consumer will be idle. This is because, the topic has only 3 partitions. So, the 4th consumer will be idle. This is called **over partitioning**. Thus kafka and the consumers will talk to each other and decide how to distribute the partitions.
+
+> [!Tip]
+> As a developer we don't need to know the internal mechanism of how kafka and the consumers talk to each other. We just need to know how to configure the consumer and to configure the consumer we only need to set the group id and the topic name. Rest of the thins are taken care by kafka.
+
+## Spring boot Kafka support
+
+Standard way to use Kafka in receiving messages is to use the `@KafkaListener` annotation. The `@KafkaListener` annotation is a high-level abstraction of the consumer API. The `@KafkaListener` annotation is given the name of the topic. The `@KafkaListener` annotation is used to receive a record from a topic.
+
+The `@KafkaListener` annotation is given the following parameters:
+
+- **topic**: The name of the topic from which the record is read.
+- **groupId**: The id of the consumer group. The consumer group is a group of consumers that read records from the same topic. The consumer group is used to balance the load of the records. The consumer group is used to ensure that each record is read by only one consumer in the group. The consumer group is used to ensure that the order of the records is maintained.
+
+There is also another annotation called `@Retryable` which is used to retry the method if the method fails. The `@Retryable` annotation is given the following parameters:
+
+- **attempts**: The number of attempts that the method is retried. The default number of attempts is 3. This means that the method is retried 2 times if the method fails.
+
+- **backoff**: The time that the method waits before retrying. The default backoff is 1000 milliseconds.
+
+The last annotation is `@dltHandler` which is used to handle the dead letter topic. The `@dltHandler` annotation mostly used for logging the error messages.
+
+## Conclusion
+
+In this portion we have learned about the Kafka Consumers. We have learned about the `KafkaConsumer` class and the `ConsumerRecord` class. We have also learned about the consumer scaling and the Spring boot Kafka support. We have also learned about the `@KafkaListener` annotation, the `@Retryable` annotation, and the `@dltHandler` annotation. We have also learned about the dead letter topic.
