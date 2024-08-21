@@ -17,8 +17,8 @@ Here, we will discuss the following topics:
 - [Kafka Architecture](#kafka-architecture)
 - [Kafka Components](#kafka-components)
 - [Kafka Topics](#kafka-topics)
-- [Kafka Producers](#kafka-producers)
-- [Kafka Consumers](#kafka-consumers)
+- [Kafka Producers](./producers.md)
+- [Kafka Consumers](./consumers.md)
 - [Kafka Brokers](#kafka-brokers)
 - [Kafka Zookeeper](#kafka-zookeeper)
 - [Kafka Cluster](#kafka-cluster)
@@ -86,26 +86,6 @@ Basically a partition is replicated in multiple brokers. One of them is a leader
 > [!Tip]
 > The replication factor is tunable on the Producer Side.
 > The default replication factor is 1. This means that the partition is stored in only one broker. If the broker goes down, then the partition is lost. So, we can increase the replication factor to 2 or 3. This means that the partition is stored in 2 or 3 brokers. This way, if one broker goes down, the other brokers can still serve the partition.
-
-## Kafka Producers
-
-The producer is the process that publishes records (messages) to a topic. The producer is responsible for choosing which record to assign to which partition within the topic. The producer can also choose to receive acknowledgements from the broker when a record is successfully published.
-
-Producer and the broker communicate using the **Producer API**. The producer sends a record to the broker using the **send()** method. The send() method is an asynchronous method. This means that the producer does not wait for the broker to acknowledge the record. The producer sends the record and moves on to the next record. This is called **fire-and-forget**.
-
-> [!Tip]
-> As an application developer, we mostly work with the Producer and the Consumer API. We don't need to worry about the internals of the producer and the consumer. Mostly, we need to know how to configure the producer and the consumer.
-
-Natie Language of Kafka is Java. By default, kafka producer api gives us these classes:
-
-- KafkaProducer
-- ProducerRecord
-
-### `KafkaProducer` Class
-
-The `KafkaProducer` class is given a configuration object. This configuration object is a key-value pair. The configuration object is used to configure the producer. The configuration object is used to configure the following things:
-
-## Kafka Consumers
 
 ## Kafka Brokers
 

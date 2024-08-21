@@ -73,7 +73,9 @@ export default defineConfig({
           {
             text: 'Kafka',
             items: [
-              { text: 'Overview', link: '/kafka/' }
+              { text: 'Overview', link: '/kafka/' },
+              { text: 'Producers', link: '/kafka/producers' },
+              { text: 'Consumers', link: '/kafka/consumers' },
             ]
           },
           {
