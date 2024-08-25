@@ -87,6 +87,9 @@ To stop the Kafka cluster, run the following command:
 docker-compose down
 ```
 
+> [!Caution]
+> Don't use this docker compose file in production. This is only for dev and test environments.
+
 To access the Kafka UI, open the browser and go to `http://localhost:8090`.
 
 > [!Tip]
