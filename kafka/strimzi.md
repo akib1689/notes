@@ -160,22 +160,22 @@ In this part, we will do the following things:
 
 To achieve this, we just need to tweak the `Kafka` resource configuration. We need to add a `LoadBalancer` service to expose the Kafka cluster to external applications. The following is the configuration for the Kafka cluster:
 
-```yaml{14-18}
+```yaml {14-18}
 spec:
-    kafka:
-        version: 3.8.0
-        replicas: 1
-        listeners:
-            - name: plain
-              port: 9092
-              type: internal
-              tls: false
-            - name: tls
-              port: 9093
-              type: internal
-              tls: true
-            - name: external
-              port: 9094
-              type: loadbalancer
-              tls: false
+  kafka:
+    version: 3.8.0
+    replicas: 1
+    listeners:
+      - name: plain
+        port: 9092
+        type: internal
+        tls: false
+      - name: tls
+        port: 9093
+        type: internal
+        tls: true
+      - name: external
+        port: 9094
+        type: loadbalancer
+        tls: false
 ```
