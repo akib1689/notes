@@ -133,6 +133,8 @@ spec:
 
 In this configuration, we have defined a Kafka cluster with a single broker and a single zookeeper. The Kafka cluster is available internally to clients in the same kubernetes cluster. We have not enabled encryption, authentication or authorization. We have also not enabled persistence and are using `emptyDir` volumes. The file can be found at this [link](https://github.com/strimzi/strimzi-kafka-operator/blob/0.43.0/examples/kafka/kafka-ephemeral.yaml)
 
+#### Step 4: Connect to Kafka Cluster
+
 For quick testing to play around with Kafka, we can use the following producer and consumer:
 
 ```bash
@@ -147,6 +149,65 @@ In a separate terminal, run the following command to start a consumer:
 export KAFKA_CLUSTER_NAME=kafka-cluster
 
 kubectl -n kafka run kafka-consumer -ti --image=quay.io/strimzi/kafka:0.43.0-kafka-3.8.0 --rm=true --restart=Never -- bin/kafka-console-consumer.sh --bootstrap-server $KAFKA_CLUSTER_NAME-kafka-bootstrap:9092 --topic my-topic --from-beginning
+```
+
+#### Step 5: Connect to kafka Cluster using TLS
+
+- Obtain the CA certificate:
+
+```bash
+kubectl get secret kafka-cluster-cluster-ca-cert -n kafka -o jsonpath='{.data.ca\.crt}' | base64 --decode > ca.crt
+```
+
+- Create a user:
+
+```bash
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaUser
+metadata:
+  name: test-user
+  labels:
+    strimzi.io/cluster: kafka-cluster
+spec:
+  authentication:
+    type: tls
+  authorization:
+    type: simple
+    acls:
+      # Example consumer Acls for topic my-topic using consumer group my-group
+      - resource:
+          type: topic
+          name: test-topic
+          patternType: literal
+        operations:
+          - Describe
+          - Read
+        host: "*"
+      - resource:
+          type: group
+          name: test-group
+          patternType: literal
+        operations:
+          - Read
+          - Describe
+        host: "*"
+      # Example Producer Acls for topic my-topic
+      - resource:
+          type: topic
+          name: test-topic
+          patternType: literal
+        operations:
+          - Create
+          - Describe
+          - Write
+        host: "*"
+```
+
+- Obtain the client certificate:
+
+```bash
+kubectl get secret test-user -n kafka -o jsonpath='{.data.user\.crt}' | base64 --decode > client.crt
+kubectl get secret test-user -n kafka -o jsonpath='{.data.user\.key}' | base64 --decode > client.key
 ```
 
 ### Part 2: Exposing Kafka
