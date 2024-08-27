@@ -46,11 +46,11 @@ The documentation for this section is taken from the Medium blog post. Later, we
 - kubectl
 - helm
 
-### Part 1: Simplified Kafka on Kubernetes
+### Simplified Kafka on Kubernetes
 
 In this part, we will deploy a Kafka cluster on Kubernetes using Strimzi. We will deploy a Kafka cluster with a single broker and a single zookeeper.
 
-#### Step 1: Create a namespace (Optional)
+#### Create a namespace (Optional)
 
 Create a namespace to deploy the Kafka cluster:
 
@@ -64,7 +64,7 @@ kubectl create namespace kafka
 kubectl config set-context --current --namespace=kafka
 ```
 
-#### Step 2: Install Strimzi
+#### Install Strimzi
 
 To install Strimzi, we will use the helm chart. Add the Strimzi helm chart repository:
 
@@ -84,11 +84,11 @@ Install Strimzi using the helm chart:
 helm install strimzi-operator strimzi/strimzi-kafka-operator
 ```
 
-#### Step 3: Deploy Kafka Cluster
+#### Deploy Kafka Cluster
 
 As metioned, we will keep things simple and start of with the following configuration:
 
-- A single node Kafka cluster
+- A 3 node Kafka cluster
 - Available internally to clients in the same kubernetes cluster.
 - No encryption, authentication or authorization.
 - No persistence (uses `emptyDir` volumes).
@@ -109,10 +109,8 @@ spec:
         port: 9092
         type: internal
         tls: false
-      - name: tls
-        port: 9093
-        type: internal
-        tls: true
+    authorization:
+      type: simple
     config:
       offsets.topic.replication.factor: 1
       transaction.state.log.replication.factor: 1
@@ -133,7 +131,7 @@ spec:
 
 In this configuration, we have defined a Kafka cluster with a single broker and a single zookeeper. The Kafka cluster is available internally to clients in the same kubernetes cluster. We have not enabled encryption, authentication or authorization. We have also not enabled persistence and are using `emptyDir` volumes. The file can be found at this [link](https://github.com/strimzi/strimzi-kafka-operator/blob/0.43.0/examples/kafka/kafka-ephemeral.yaml)
 
-#### Step 4: Connect to Kafka Cluster
+#### Connect to Kafka Cluster Using Plain Text
 
 For quick testing to play around with Kafka, we can use the following producer and consumer:
 
@@ -151,17 +149,31 @@ export KAFKA_CLUSTER_NAME=kafka-cluster
 kubectl -n kafka run kafka-consumer -ti --image=quay.io/strimzi/kafka:0.43.0-kafka-3.8.0 --rm=true --restart=Never -- bin/kafka-console-consumer.sh --bootstrap-server $KAFKA_CLUSTER_NAME-kafka-bootstrap:9092 --topic my-topic --from-beginning
 ```
 
-#### Step 5: Connect to kafka Cluster using TLS
+### Securing kafka Cluster using mTLS
 
-- Obtain the CA certificate:
+#### Enable TLS
 
-```bash
-kubectl get secret kafka-cluster-cluster-ca-cert -n kafka -o jsonpath='{.data.ca\.crt}' | base64 --decode > ca.crt
+Add the following configuration to the `Kafka` resource to enable `TLS`. The listener configuration should be present in the following block `spec.kafka.listeners`:
+
+```yaml
+listeners:
+  - name: plain
+    port: 9092
+    type: internal
+    tls: false
+  - name: tls       # [!code highlight]
+    port: 9093      # [!code highlight]
+    type: internal  # [!code highlight]
+    tls: true       # [!code highlight]
 ```
 
-- Create a user:
+This configuration will enable the Kafka cluster to listen on port `9093` for `TLS` connections. Now the clients from the same kubernetes cluster can connect to the Kafka cluster using `mTLS`.
 
-```bash
+#### Create a Kafka User
+
+Create a `KafkaUser` resource with `TLS` authentication. The following is the configuration for the `KafkaUser` resource:
+
+```yaml
 apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaUser
 metadata:
@@ -203,21 +215,152 @@ spec:
         host: "*"
 ```
 
+This configuration will create a `KafkaUser` resource with `TLS` authentication. The user will have the following permissions:
+
+- Read and Describe permissions on the topic `test-topic` using the consumer group `test-group`.
+- Create, Describe and Write permissions on the topic `test-topic`.
+- The user will have the permissions to read and describe the consumer group `test-group`.
+
+#### Connect to Cluster using mTLS
+
+To connect to the Kafka cluster using `mTLS`, we need to obtain the CA certificate of the cluster and the client certificate. The following are the steps to obtain the certificates:
+
+- Make a separate directory to store the certificates:
+
+```bash
+mkdir certs
+cd certs
+```
+
+- Obtain the CA certificate of the cluster
+
+```bash
+kubectl get secret kafka-cluster-cluster-ca-cert -n kafka -o jsonpath='{.data.ca\.crt}' | base64 --decode > ca.crt
+```
+
+- Create a `truststore` with the CA certificate:
+
+```bash
+keytool -keystore truststore.jks -storepass <YOUR_SECURE_PASSWORD> -alias CARoot -import -file ca.crt -noprompt
+```
+
 - Obtain the client certificate:
 
 ```bash
-kubectl get secret test-user -n kafka -o jsonpath='{.data.user\.crt}' | base64 --decode > client.crt
-kubectl get secret test-user -n kafka -o jsonpath='{.data.user\.key}' | base64 --decode > client.key
+kubectl get secret test-user -n kafka -o jsonpath='{.data.user\.crt}' | base64 --decode > user.crt
+kubectl get secret test-user -n kafka -o jsonpath='{.data.user\.key}' | base64 --decode > user.key
+openssl pkcs12 -export -in user.crt -inkey user.key -out keystore.p12 -password pass:<YOUR_SECURE_PASSWORD>
 ```
 
-### Part 2: Exposing Kafka
+- Create a `kubernetes` secret with the client certificate:
+
+```bash
+kubectl create secret generic test-user-tls \
+--from-file=keystore.p12 \
+--from-file=truststore.jks \
+--from-literal=password=<YOUR_SECURE_PASSWORD> \
+-n kafka
+```
+
+#### Configuring Kafka UI to use mTLS
+
+To allow kafka UI to access the kafka cluster with TLS, we need to use the client certificate that we generated in the previous step.
+
+- We need to mount a secret in a volume.
+- Use the certificate from this volume to connect to the Kafka cluster.
+
+The following is the configuration for the Kafka UI:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-ui
+  namespace: kafka
+  labels:
+    app: kafka-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-ui
+  template:
+    metadata:
+      labels:
+        app: kafka-ui
+    spec:
+      volumes:
+        - name: test-user-auth-tls
+          secret:
+            secretName: test-user-auth-tls
+      containers:
+        - name: ui
+          image: provectuslabs/kafka-ui:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 500m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          volumeMounts:
+            - name: test-user-auth-tls
+              mountPath: "/tmp"
+              readOnly: true
+          env:
+            - name: KAFKA_CLUSTERS_0_NAME
+              value: kafka-cluster
+            - name: KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS
+              value: kafka-cluster-kafka-bootstrap:9093
+            - name: KAFKA_CLUSTERS_0_PROPERTIES_SECURITY_PROTOCOL
+              value: SSL
+            - name: KAFKA_CLUSTERS_0_PROPERTIES_SSL_TRUSTSTORE_LOCATION
+              value: /tmp/truestore.jks
+            - name: KAFKA_CLUSTERS_0_PROPERTIES_SSL_TRUSTSTORE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: test-user-auth-tls
+                  key: password
+                  optional: false
+            - name: KAFKA_CLUSTERS_0_PROPERTIES_SSL_KEYSTORE_LOCATION
+              value: /tmp/keystore.p12
+            - name: KAFKA_CLUSTERS_0_PROPERTIES_SSL_KEYSTORE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: test-user-auth-tls
+                  key: password
+                  optional: false
+```
+
+In this configuration, we have mounted the secret `test-user-auth-tls` in the volume `/tmp`. We have used the client certificate from this volume to connect to the Kafka cluster.
+
+Add this configuration to a file `kafka-ui.yaml` and apply it to the cluster:
+
+```bash
+kubectl apply -f kafka-ui.yaml
+```
+
+Connect to the Kafka UI using the following command:
+
+```bash
+kubectl port-forward deployment/kafka-ui 8080:8080 -n kafka
+```
+
+Now you can access the Kafka UI at `http://localhost:8080`.
+
+### Exposing Kafka
 
 In this part, we will do the following things:
 
 - Expose Kafka cluster to external application.
 - Apply `TLS` encryption to the Kafka cluster.
 
-#### Step 1: Expose Kafka Cluster
+#### Expose Kafka Cluster
 
 To achieve this, we just need to tweak the `Kafka` resource configuration. We need to add a `LoadBalancer` service to expose the Kafka cluster to external applications. The following is the configuration for the Kafka cluster:
 
