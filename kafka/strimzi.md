@@ -103,14 +103,12 @@ metadata:
 spec:
   kafka:
     version: 3.8.0
-    replicas: 1
+    replicas: 3
     listeners:
       - name: plain
         port: 9092
         type: internal
         tls: false
-    authorization:
-      type: simple
     config:
       offsets.topic.replication.factor: 1
       transaction.state.log.replication.factor: 1
@@ -121,7 +119,7 @@ spec:
     storage:
       type: ephemeral
   zookeeper:
-    replicas: 1
+    replicas: 3
     storage:
       type: ephemeral
   entityOperator:
@@ -149,7 +147,7 @@ export KAFKA_CLUSTER_NAME=kafka-cluster
 kubectl -n kafka run kafka-consumer -ti --image=quay.io/strimzi/kafka:0.43.0-kafka-3.8.0 --rm=true --restart=Never -- bin/kafka-console-consumer.sh --bootstrap-server $KAFKA_CLUSTER_NAME-kafka-bootstrap:9092 --topic my-topic --from-beginning
 ```
 
-### Securing kafka Cluster using mTLS
+### Securing kafka Cluster using TLS
 
 #### Enable TLS
 
@@ -167,61 +165,9 @@ listeners:
     tls: true       # [!code highlight]
 ```
 
-This configuration will enable the Kafka cluster to listen on port `9093` for `TLS` connections. Now the clients from the same kubernetes cluster can connect to the Kafka cluster using `mTLS`.
+This configuration will enable the Kafka cluster to listen on port `9093` for `TLS` connections. Now the clients from the same kubernetes cluster can connect to the Kafka cluster using `TLS`.
 
-#### Create a Kafka User
-
-Create a `KafkaUser` resource with `TLS` authentication. The following is the configuration for the `KafkaUser` resource:
-
-```yaml
-apiVersion: kafka.strimzi.io/v1beta2
-kind: KafkaUser
-metadata:
-  name: test-user
-  labels:
-    strimzi.io/cluster: kafka-cluster
-spec:
-  authentication:
-    type: tls
-  authorization:
-    type: simple
-    acls:
-      # Example consumer Acls for topic my-topic using consumer group my-group
-      - resource:
-          type: topic
-          name: test-topic
-          patternType: literal
-        operations:
-          - Describe
-          - Read
-        host: "*"
-      - resource:
-          type: group
-          name: test-group
-          patternType: literal
-        operations:
-          - Read
-          - Describe
-        host: "*"
-      # Example Producer Acls for topic my-topic
-      - resource:
-          type: topic
-          name: test-topic
-          patternType: literal
-        operations:
-          - Create
-          - Describe
-          - Write
-        host: "*"
-```
-
-This configuration will create a `KafkaUser` resource with `TLS` authentication. The user will have the following permissions:
-
-- Read and Describe permissions on the topic `test-topic` using the consumer group `test-group`.
-- Create, Describe and Write permissions on the topic `test-topic`.
-- The user will have the permissions to read and describe the consumer group `test-group`.
-
-#### Connect to Cluster using mTLS
+#### Connect to Cluster using TLS
 
 To connect to the Kafka cluster using `mTLS`, we need to obtain the CA certificate of the cluster and the client certificate. The following are the steps to obtain the certificates:
 
@@ -244,25 +190,16 @@ kubectl get secret kafka-cluster-cluster-ca-cert -n kafka -o jsonpath='{.data.ca
 keytool -keystore truststore.jks -storepass <YOUR_SECURE_PASSWORD> -alias CARoot -import -file ca.crt -noprompt
 ```
 
-- Obtain the client certificate:
-
-```bash
-kubectl get secret test-user -n kafka -o jsonpath='{.data.user\.crt}' | base64 --decode > user.crt
-kubectl get secret test-user -n kafka -o jsonpath='{.data.user\.key}' | base64 --decode > user.key
-openssl pkcs12 -export -in user.crt -inkey user.key -out keystore.p12 -password pass:<YOUR_SECURE_PASSWORD>
-```
-
 - Create a `kubernetes` secret with the client certificate:
 
 ```bash
 kubectl create secret generic test-user-tls \
---from-file=keystore.p12 \
 --from-file=truststore.jks \
 --from-literal=password=<YOUR_SECURE_PASSWORD> \
 -n kafka
 ```
 
-#### Configuring Kafka UI to use mTLS
+#### Configuring Kafka UI to use TLS
 
 To allow kafka UI to access the kafka cluster with TLS, we need to use the client certificate that we generated in the previous step.
 
@@ -290,9 +227,9 @@ spec:
         app: kafka-ui
     spec:
       volumes:
-        - name: test-user-auth-tls
+        - name: test-user-tls
           secret:
-            secretName: test-user-auth-tls
+            secretName: test-user-tls
       containers:
         - name: ui
           image: provectuslabs/kafka-ui:latest
@@ -309,7 +246,7 @@ spec:
               cpu: 100m
               memory: 128Mi
           volumeMounts:
-            - name: test-user-auth-tls
+            - name: test-user-tls
               mountPath: "/tmp"
               readOnly: true
           env:
@@ -320,24 +257,17 @@ spec:
             - name: KAFKA_CLUSTERS_0_PROPERTIES_SECURITY_PROTOCOL
               value: SSL
             - name: KAFKA_CLUSTERS_0_PROPERTIES_SSL_TRUSTSTORE_LOCATION
-              value: /tmp/truestore.jks
+              value: /tmp/truststore.jks
             - name: KAFKA_CLUSTERS_0_PROPERTIES_SSL_TRUSTSTORE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: test-user-auth-tls
+                  name: test-user-tls
                   key: password
                   optional: false
-            - name: KAFKA_CLUSTERS_0_PROPERTIES_SSL_KEYSTORE_LOCATION
-              value: /tmp/keystore.p12
-            - name: KAFKA_CLUSTERS_0_PROPERTIES_SSL_KEYSTORE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: test-user-auth-tls
-                  key: password
-                  optional: false
+
 ```
 
-In this configuration, we have mounted the secret `test-user-auth-tls` in the volume `/tmp`. We have used the client certificate from this volume to connect to the Kafka cluster.
+In this configuration, we have mounted the secret `test-user-tls` in the volume `/tmp`. We have used the client certificate from this volume to connect to the Kafka cluster.
 
 Add this configuration to a file `kafka-ui.yaml` and apply it to the cluster:
 
@@ -362,9 +292,9 @@ In this part, we will do the following things:
 
 #### Expose Kafka Cluster
 
-To achieve this, we just need to tweak the `Kafka` resource configuration. We need to add a `LoadBalancer` service to expose the Kafka cluster to external applications. The following is the configuration for the Kafka cluster:
+To achieve this, we just need to tweak the `Kafka` resource configuration. We need to add a `Nodeport` service to expose the Kafka cluster to external applications. The following is the configuration for the Kafka cluster:
 
-```yaml {14-18}
+```yaml
 spec:
   kafka:
     version: 3.8.0
@@ -378,8 +308,34 @@ spec:
         port: 9093
         type: internal
         tls: true
-      - name: external
-        port: 9094
-        type: loadbalancer
-        tls: false
+      - name: external      # [!code highlight]
+        port: 9094          # [!code highlight]
+        type: nodeport      # [!code highlight]
+        tls: false          # [!code highlight]
 ```
+
+In this configuration, we have added a new listener `external` to the Kafka cluster. This listener listens on port `9094` and is of type `Nodeport`. This listener is not `TLS` enabled.
+
+#### Connect to Kafka Cluster
+
+In this example we will see the docker container way to connect to the Kafka cluster. The following is the configuration for the producer:
+
+- First find the bootstrap server address:
+
+```bash
+kubectl get kafka kafka-cluster -o=jsonpath='{.status.listeners[?(@.name=="external")].bootstrapServers}{"\n"}'
+```
+
+- Run the producer:
+
+```bash
+docker run -ti --rm --network host quay.io/strimzi/kafka:0.43.0-kafka-3.8.0 bin/kafka-console-producer.sh --bootstrap-server <LIST_OF_BOOTSTRAP_SERVERS> --topic my-topic
+```
+
+In a separate terminal, run the following command to start a consumer:
+
+```bash
+docker run -ti --rm --network host quay.io/strimzi/kafka:0.43.0-kafka-3.8.0 bin/kafka-console-consumer.sh --bootstrap-server <LIST_OF_BOOTSTRAP_SERVERS> --topic my-topic --from-beginning
+```
+
+### Enable TLS Encryption for External Access
