@@ -108,7 +108,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/akib-89' }
+      { icon: 'github', link: 'https://github.com/akib1689' }
     ]
   },
 
