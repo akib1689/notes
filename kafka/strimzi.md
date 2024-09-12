@@ -167,6 +167,12 @@ listeners:
 
 This configuration will enable the Kafka cluster to listen on port `9093` for `TLS` connections. Now the clients from the same kubernetes cluster can connect to the Kafka cluster using `TLS`.
 
+> [!NOTE]
+> The above configuration will have the following implications:
+>
+> - The client will verify the kafka brokers using the CA certificate.
+> - But the broker will not verify the client.
+
 #### Connect to Cluster using TLS
 
 To connect to the Kafka cluster using `mTLS`, we need to obtain the CA certificate of the cluster and the client certificate. The following are the steps to obtain the certificates:
