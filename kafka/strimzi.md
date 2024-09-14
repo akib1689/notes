@@ -1,12 +1,11 @@
 ---
-description: How to deploy a Kafka cluster on Kubernetes using Strimzi.
 head:
   - - meta
     - property: og:title
       content: Deploy Kafka Cluster on Kubernetes
   - - meta
     - property: og:description
-      content: How to deploy a Kafka cluster on Kubernetes using Strimzi.
+      content: Learn how to deploy a Kafka cluster on Kubernetes using Strimzi.
   - - meta
     - property: og:image
       content: https://strimzi.io/docs/operators/latest/images/overview/kafka-concepts-supporting-components.png
@@ -16,6 +15,15 @@ head:
   - - meta
     - name: twitter:card
       content: summary_large_image
+  - - meta
+    - name: twitter:title
+      content: Deploy Kafka Cluster on Kubernetes
+  - - meta
+    - name: twitter:description
+      content: Learn how to deploy a Kafka cluster on Kubernetes using Strimzi.
+  - - meta
+    - name: twitter:image
+      content: https://strimzi.io/docs/operators/latest/images/overview/kafka-concepts-supporting-components.png
 ---
 
 # Deploy Kafka Cluster on Kubernetes

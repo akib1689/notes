@@ -31,10 +31,6 @@ export default defineConfig({
     ['link', 
       { href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap' }
     ],
-    ['meta', { property: 'og:title', content: 'Your Note Title' }],
-    ['meta', { property: 'og:description', content: 'A brief description of your note.' }],
-    ['meta', { property: 'og:image', content: 'https://your-domain/your-image.jpg' }],
-    ['meta', { property: 'og:url', content: 'https://your-domain/note-path' }],
   ],
 
   base: '/Notes/',
