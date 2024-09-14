@@ -1,3 +1,23 @@
+---
+description: How to deploy a Kafka cluster on Kubernetes using Strimzi.
+head:
+  - - meta
+    - property: og:title
+      content: Deploy Kafka Cluster on Kubernetes
+  - - meta
+    - property: og:description
+      content: How to deploy a Kafka cluster on Kubernetes using Strimzi.
+  - - meta
+    - property: og:image
+      content: https://strimzi.io/docs/operators/latest/images/overview/kafka-concepts-supporting-components.png
+  - - meta
+    - property: og:url
+      content: https://akib1689.github.io/Notes/kafka/strimzi
+  - - meta
+    - name: twitter:card
+      content: summary_large_image
+---
+
 # Deploy Kafka Cluster on Kubernetes
 
 In this article, we will deploy a Kafka cluster on Kubernetes. We will host cloud native Kafka on Kubernetes using Confluent Platform using Confluent.
