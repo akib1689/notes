@@ -8,13 +8,13 @@ head:
       content: Learn how to deploy a Kafka cluster on Kubernetes using Strimzi.
   - - meta
     - property: og:image
-      content: https://strimzi.io/docs/operators/latest/images/overview/kafka-concepts-supporting-components.png
+      content: https://akib1689.github.io/Notes/images/kafka-on-kubernetes.png
   - - meta
     - property: og:url
-      content: https://akib1689.github.io/Notes/kafka/strimzi
+      content: https://akib1689.github.io/Notes/kafka/deploy-part-1
   - - meta
     - name: twitter:card
-      content: summary_large_image
+      content: summary
   - - meta
     - name: twitter:title
       content: Deploy Kafka Cluster on Kubernetes
@@ -23,7 +23,7 @@ head:
       content: Learn how to deploy a Kafka cluster on Kubernetes using Strimzi.
   - - meta
     - name: twitter:image
-      content: https://strimzi.io/docs/operators/latest/images/overview/kafka-concepts-supporting-components.png
+      content: https://akib1689.github.io/Notes/images/kafka-on-kubernetes.png
 ---
 
 # Deploy Kafka Cluster on Kubernetes
@@ -247,7 +247,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: kafka-ui
-  namespace: kafka
+  # namespace: kafka
   labels:
     app: kafka-ui
 spec:
@@ -277,7 +277,7 @@ spec:
               cpu: 500m
               memory: 256Mi
             requests:
-              cpu: 100m
+              cpu: 200m
               memory: 128Mi
           volumeMounts:
             - name: test-user-tls
@@ -299,77 +299,37 @@ spec:
                   key: password
                   optional: false
 
+---
+# Service for Kafka UI
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-ui
+  namespace: kafka
+  labels:
+    app: kafka-ui
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+  selector:
+    app: kafka-ui
+  type: ClusterIP
 ```
 
 In this configuration, we have mounted the secret `test-user-tls` in the volume `/tmp`. We have used the client certificate from this volume to connect to the Kafka cluster.
 
 Add this configuration to a file `kafka-ui.yaml` and apply it to the cluster:
 
-```bash
-kubectl apply -f kafka-ui.yaml
-```
-
 Connect to the Kafka UI using the following command:
 
 ```bash
-kubectl port-forward deployment/kafka-ui 8080:8080 -n kafka
+kubectl port-forward svc/kafka-ui 8080:8080 -n kafka
 ```
 
 Now you can access the Kafka UI at `http://localhost:8080`.
 
-### Exposing Kafka
+### Conclusion
 
-In this part, we will do the following things:
-
-- Expose Kafka cluster to external application.
-- Apply `TLS` encryption to the Kafka cluster.
-
-#### Expose Kafka Cluster
-
-To achieve this, we just need to tweak the `Kafka` resource configuration. We need to add a `Nodeport` service to expose the Kafka cluster to external applications. The following is the configuration for the Kafka cluster:
-
-```yaml
-spec:
-  kafka:
-    version: 3.8.0
-    replicas: 1
-    listeners:
-      - name: plain
-        port: 9092
-        type: internal
-        tls: false
-      - name: tls
-        port: 9093
-        type: internal
-        tls: true
-      - name: external      # [!code highlight]
-        port: 9094          # [!code highlight]
-        type: nodeport      # [!code highlight]
-        tls: false          # [!code highlight]
-```
-
-In this configuration, we have added a new listener `external` to the Kafka cluster. This listener listens on port `9094` and is of type `Nodeport`. This listener is not `TLS` enabled.
-
-#### Connect to Kafka Cluster
-
-In this example we will see the docker container way to connect to the Kafka cluster. The following is the configuration for the producer:
-
-- First find the bootstrap server address:
-
-```bash
-kubectl get kafka kafka-cluster -o=jsonpath='{.status.listeners[?(@.name=="external")].bootstrapServers}{"\n"}'
-```
-
-- Run the producer:
-
-```bash
-docker run -ti --rm --network host quay.io/strimzi/kafka:0.43.0-kafka-3.8.0 bin/kafka-console-producer.sh --bootstrap-server <LIST_OF_BOOTSTRAP_SERVERS> --topic my-topic
-```
-
-In a separate terminal, run the following command to start a consumer:
-
-```bash
-docker run -ti --rm --network host quay.io/strimzi/kafka:0.43.0-kafka-3.8.0 bin/kafka-console-consumer.sh --bootstrap-server <LIST_OF_BOOTSTRAP_SERVERS> --topic my-topic --from-beginning
-```
-
-### Enable TLS Encryption for External Access
+In this article, we learned how to deploy a Kafka cluster on Kubernetes using Strimzi. We also learned how to secure the Kafka cluster using `TLS` and how to connect to the Kafka cluster using `TLS` from the Kafka UI. In the next article, we will learn how to deploy a kafka cluster so that we can access it from outside the kubernetes cluster.

@@ -77,7 +77,8 @@ export default defineConfig({
               { text: 'Topics', link: '/kafka/topics' },
               { text: 'Producers', link: '/kafka/producers' },
               { text: 'Consumers', link: '/kafka/consumers' },
-              { text: 'Kubernetes with Strimzi', link: '/kafka/strimzi' }
+              { text: 'Kafka Deployment', link: '/kafka/deploy-part-1' },
+              { text: 'Expose Kafka', link: '/kafka/deploy-part-2' },
             ]
           },
           {
