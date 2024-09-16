@@ -15,15 +15,6 @@ head:
   - - meta
     - name: twitter:card
       content: summary
-  - - meta
-    - name: twitter:title
-      content: Accessing Kafka Cluster on Kubernetes from Outside
-  - - meta
-    - name: twitter:description
-      content: Learn how to access a Kafka cluster on Kubernetes from outside the cluster.
-  - - meta
-    - name: twitter:image
-      content: https://akib1689.github.io/Notes/images/kafka-on-kubernetes.png
 ---
 
 # Accessing Kafka Cluster on Kubernetes from Outside
@@ -45,3 +36,12 @@ There are multiple ways to access a Kafka cluster on Kubernetes from outside the
 1. **Route**: Expose the Kafka cluster using a Route resource. (For OpenShift only).
 
 This guide is taken from the following a article series on [Strimzi.io](https://strimzi.io/). The first part of the series can be found [here](https://strimzi.io/blog/2019/04/17/accessing-kafka-part-1/).
+
+## Ingress Resource
+
+In this guide, we will use an Ingress resource to expose the Kafka cluster. Strimzi is tested with the NGINX Ingress Controller. You can use any other Ingress controller as well.
+
+With the Ingress resource, we can expose the Kafka cluster using a domain name. The Ingress resource will route the traffic to the Kafka cluster.
+
+> [!CAUTION]
+> Don't try to use ingress without the tls portion. It will not work. I have wasted one day to figure out why it is not working.

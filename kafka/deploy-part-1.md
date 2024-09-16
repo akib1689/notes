@@ -15,15 +15,6 @@ head:
   - - meta
     - name: twitter:card
       content: summary
-  - - meta
-    - name: twitter:title
-      content: Deploy Kafka Cluster on Kubernetes
-  - - meta
-    - name: twitter:description
-      content: Learn how to deploy a Kafka cluster on Kubernetes using Strimzi.
-  - - meta
-    - name: twitter:image
-      content: https://akib1689.github.io/Notes/images/kafka-on-kubernetes.png
 ---
 
 # Deploy Kafka Cluster on Kubernetes
