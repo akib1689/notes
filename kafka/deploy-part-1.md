@@ -178,10 +178,10 @@ listeners:
     port: 9092
     type: internal
     tls: false
-  - name: tls       # [!code highlight]
-    port: 9093      # [!code highlight]
-    type: internal  # [!code highlight]
-    tls: true       # [!code highlight]
+  - name: tls       # [!code focus]
+    port: 9093      # [!code focus]
+    type: internal  # [!code focus]
+    tls: true       # [!code focus]
 ```
 
 This configuration will enable the Kafka cluster to listen on port `9093` for `TLS` connections. Now the clients from the same kubernetes cluster can connect to the Kafka cluster using `TLS`.
@@ -192,9 +192,9 @@ This configuration will enable the Kafka cluster to listen on port `9093` for `T
 > - The client will verify the kafka brokers using the CA certificate.
 > - But the broker will not verify the client.
 
-#### Connect to Cluster using TLS
+#### Obtaining Certificates
 
-To connect to the Kafka cluster using `mTLS`, we need to obtain the CA certificate of the cluster and the client certificate. The following are the steps to obtain the certificates:
+To connect to the Kafka cluster using `TLS`, we need to obtain the CA certificate of the cluster and the client certificate. The following are the steps to obtain the certificates:
 
 - Make a separate directory to store the certificates:
 
@@ -212,7 +212,7 @@ kubectl get secret kafka-cluster-cluster-ca-cert -n kafka -o jsonpath='{.data.ca
 - Create a `truststore` with the CA certificate:
 
 ```bash
-keytool -keystore truststore.jks -storepass <YOUR_SECURE_PASSWORD> -alias CARoot -import -file ca.crt -noprompt
+keytool -import -trustcacerts -alias root -file ca.crt -keystore truststore.jks -storepass <YOUR_SECURE_PASSWORD> -noprompt
 ```
 
 - Create a `kubernetes` secret with the client certificate:
@@ -316,7 +316,7 @@ Add this configuration to a file `kafka-ui.yaml` and apply it to the cluster:
 Connect to the Kafka UI using the following command:
 
 ```bash
-kubectl port-forward svc/kafka-ui 8080:8080 -n kafka
+kubectl port-forward svc/kafka-ui 8080:80 -n kafka
 ```
 
 Now you can access the Kafka UI at `http://localhost:8080`.
