@@ -1,0 +1,181 @@
+{
+  "main": {
+    "id": "1167a8f333709169",
+    "type": "split",
+    "children": [
+      {
+        "id": "210b6c71bde7a524",
+        "type": "tabs",
+        "dimension": 66.78507992895204,
+        "children": [
+          {
+            "id": "4e72c5183513d2d6",
+            "type": "leaf",
+            "state": {
+              "type": "diff-view",
+              "state": {
+                "file": ".obsidian/app.json",
+                "staged": false
+              }
+            },
+            "group": "d07330bf5072f4fd"
+          }
+        ]
+      },
+      {
+        "id": "f1be481372713082",
+        "type": "tabs",
+        "dimension": 33.214920071047956,
+        "children": [
+          {
+            "id": "c5e0fb0a3e998efd",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "kafka/deploy-part-1.md"
+              }
+            },
+            "group": "d07330bf5072f4fd"
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "af738636073f0930",
+    "type": "split",
+    "children": [
+      {
+        "id": "5cc500d73da7bc5d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5d71e6ddfca842d4",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "4fce732256bbf087",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "bbd27948fe12732e",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "3545398aae42432c",
+    "type": "split",
+    "children": [
+      {
+        "id": "34d042a5730322c3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "df6262dab6c1875a",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "9299396f482e4b12",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "7e03ac948b0624db",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "2bb0094b331fde6e",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          },
+          {
+            "id": "733528b4a16f8166",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "obsidian-git:Open Git source control": false,
+      "vitepress-publisher:start vitepress": false
+    }
+  },
+  "active": "4e72c5183513d2d6",
+  "lastOpenFiles": [
+    "kafka/deploy-part-1.md",
+    "azure/part-2.md",
+    "azure/part-1.md",
+    "Untitled.canvas"
+  ]
+}
