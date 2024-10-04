@@ -4,39 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "210b6c71bde7a524",
+        "id": "0df6f87fad09f8c7",
         "type": "tabs",
-        "dimension": 66.78507992895204,
         "children": [
           {
-            "id": "4e72c5183513d2d6",
+            "id": "75a699979dc82bae",
             "type": "leaf",
             "state": {
               "type": "diff-view",
               "state": {
-                "file": ".obsidian/app.json",
+                "file": ".obsidian/workspace.json",
                 "staged": false
               }
-            },
-            "group": "d07330bf5072f4fd"
-          }
-        ]
-      },
-      {
-        "id": "f1be481372713082",
-        "type": "tabs",
-        "dimension": 33.214920071047956,
-        "children": [
-          {
-            "id": "c5e0fb0a3e998efd",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "kafka/deploy-part-1.md"
-              }
-            },
-            "group": "d07330bf5072f4fd"
+            }
           }
         ]
       }
@@ -171,7 +151,7 @@
       "vitepress-publisher:start vitepress": false
     }
   },
-  "active": "4e72c5183513d2d6",
+  "active": "75a699979dc82bae",
   "lastOpenFiles": [
     "kafka/deploy-part-1.md",
     "azure/part-2.md",
