@@ -56,6 +56,13 @@ export default defineConfig({
       {
         items: [
           {
+            text: 'Android',
+            items: [
+              { text: 'Overview', link: '/android/' },
+              { text: 'Setup Bottom Navigation', link: '/android/bottom-navigation-view-setup' },
+            ]
+          },
+          {
             text: 'Azure',
             items: [
               { text: 'Overview', link: '/azure/' },
