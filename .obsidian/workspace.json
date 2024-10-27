@@ -17,7 +17,9 @@
                 "mode": "source",
                 "backlinks": true,
                 "source": false
-              }
+              },
+              "icon": "lucide-file",
+              "title": "README"
             }
           },
           {
@@ -26,10 +28,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "android/bottom-navigation-view-setup.md",
+                "file": "android/README.md",
                 "mode": "source",
                 "source": false
-              }
+              },
+              "icon": "lucide-file",
+              "title": "README"
             }
           }
         ],
@@ -53,7 +57,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
             }
           },
           {
@@ -68,7 +74,9 @@
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-search",
+              "title": "Search"
             }
           },
           {
@@ -76,7 +84,9 @@
             "type": "leaf",
             "state": {
               "type": "bookmarks",
-              "state": {}
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
             }
           }
         ]
@@ -107,7 +117,9 @@
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for bottom-navigation-view-setup"
             }
           },
           {
@@ -119,7 +131,9 @@
                 "file": "android/bottom-navigation-view-setup.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from bottom-navigation-view-setup"
             }
           },
           {
@@ -130,7 +144,9 @@
               "state": {
                 "sortOrder": "frequency",
                 "useHierarchy": true
-              }
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
             }
           },
           {
@@ -140,7 +156,9 @@
               "type": "outline",
               "state": {
                 "file": "android/bottom-navigation-view-setup.md"
-              }
+              },
+              "icon": "lucide-list",
+              "title": "Outline of bottom-navigation-view-setup"
             }
           },
           {
@@ -148,7 +166,9 @@
             "type": "leaf",
             "state": {
               "type": "git-view",
-              "state": {}
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
             }
           }
         ],
@@ -172,6 +192,10 @@
   "active": "88ad94767fad1b18",
   "lastOpenFiles": [
     "android/bottom-navigation-view-setup.md",
+    "linux-administration/install-docker.md",
+    "2024-10-27.md",
+    "ci-cd/README.md",
+    "android/README.md",
     "kafka/README.md",
     "android",
     "kafka/producers.md",
