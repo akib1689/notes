@@ -84,8 +84,10 @@ export default defineConfig({
               { text: 'Topics', link: '/kafka/topics' },
               { text: 'Producers', link: '/kafka/producers' },
               { text: 'Consumers', link: '/kafka/consumers' },
-              { text: 'Kafka Deployment', link: '/kafka/deploy-part-1' },
-              { text: 'Expose Kafka', link: '/kafka/deploy-part-2' },
+              { text: 'Deployment', items: [
+                { text: 'Deploy and Initial setup', link: '/kafka/deploy-part-1' },
+                { text: 'Access Kafka from outside', link: '/kafka/deploy-part-2' }
+              ]},
             ]
           },
           {
