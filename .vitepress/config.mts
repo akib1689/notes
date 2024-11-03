@@ -86,7 +86,8 @@ export default defineConfig({
               { text: 'Consumers', link: '/kafka/consumers' },
               { text: 'Deployment', items: [
                 { text: 'Deploy and Initial setup', link: '/kafka/deploy-part-1' },
-                { text: 'Access Kafka from outside', link: '/kafka/deploy-part-2' }
+                { text: 'Access Kafka from outside', link: '/kafka/deploy-part-2' },
+                { text: 'Attaching persistent storage', link: '/kafka/deploy-part-3' },
               ]},
             ]
           },
