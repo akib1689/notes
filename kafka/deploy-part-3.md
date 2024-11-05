@@ -66,6 +66,23 @@ resource "azurerm_managed_disk" "zookeeper_disk" {
 }
 ```
 
+## Creating a storage class for using previously created disk
+
+After creating the storage disk, we need to create a `storage class` that uses the previously created disk. Below is the `storage class` resource definition given in `yaml` format.
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: "kafka-storage-class"
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer
+reclaimPolicy: Retain
+```
+
+> [!NOTE]
+> The `provisioner` field is set to `kubernetes.io/no-provisioner` because we are not using any dynamic provisioner to create the persistent volumes. We are creating the persistent volumes manually.
+
 ## Creating persistent volumes and persistent volume claims
 
 After creating the storage disk, we need to create the `persistent volumes` and `persistent volume claims` for the Kafka brokers. Below is the `persistent volume` and `persistent volume claim` resource definition given in `yaml` format.
