@@ -44,6 +44,20 @@
  * -------------------------------------------------------------------------- */
 
  :root {
+  --vp-c-blue-1: #1890ff;
+  --vp-c-blue-2: #40a9ff;
+  --vp-c-blue-3: #69c0ff;
+  --vp-c-blue-soft: rgba(143, 195, 255, 0.14);
+ }
+
+ .dark {
+  --vp-c-blue-1: #40a9ff;
+  --vp-c-blue-2: #69c0ff;
+  --vp-c-blue-3: #91d5ff;
+  --vp-c-blue-soft: rgba(143, 195, 255, 0.14);
+ }
+
+ :root {
   --vp-c-default-1: var(--vp-c-gray-1);
   --vp-c-default-2: var(--vp-c-gray-2);
   --vp-c-default-3: var(--vp-c-gray-3);
@@ -58,6 +72,21 @@
   --vp-c-tip-2: var(--vp-c-brand-2);
   --vp-c-tip-3: var(--vp-c-brand-3);
   --vp-c-tip-soft: var(--vp-c-brand-soft);
+
+  --vp-c-note-1: var(--vp-c-blue-1);
+  --vp-c-note-2: var(--vp-c-blue-2);
+  --vp-c-note-3: var(--vp-c-blue-3);
+  --vp-c-note-soft: var(--vp-c-blue-soft);
+
+  --vp-c-important-1: var(--vp-c-purple-1);
+  --vp-c-important-2: var(--vp-c-purple-2);
+  --vp-c-important-3: var(--vp-c-purple-3);
+  --vp-c-important-soft: var(--vp-c-purple-soft);
+
+  --vp-c-success-1: var(--vp-c-green-1);
+  --vp-c-success-2: var(--vp-c-green-2);
+  --vp-c-success-3: var(--vp-c-green-3);
+  --vp-c-success-soft: var(--vp-c-green-soft);
 
   --vp-c-warning-1: var(--vp-c-yellow-1);
   --vp-c-warning-2: var(--vp-c-yellow-2);
@@ -182,32 +211,32 @@
 
 /* Tip callout */
 .custom-block.github-alert.tip {
-  border-left-color: #42b983; /* Green */
-  background-color: rgba(66, 185, 131, 0.05); /* Light green background */
+  border-left-color: var(--vp-c-success-1);
+  background-color: var(--vp-c-success-soft);
 }
 
 /* Warning callout */
 .custom-block.github-alert.warning {
-  border-left-color: #ffae42; /* Orange */
-  background-color: rgba(255, 174, 66, 0.05); /* Light orange background */
+  border-left-color: var(--vp-c-warning-1);
+  background-color: var(--vp-c-warning-soft);
 }
 
 /* Caution callout */
 .custom-block.github-alert.caution {
-  border-left-color: #ff4d4f; /* Yellow/Amber */
-  background-color: rgba(250, 173, 20, 0.05); /* Light amber background */
+  border-left-color: var(--vp-c-danger-1);
+  background-color: var(--vp-c-danger-soft);
 }
 
 /* Note callout */
 .custom-block.github-alert.note {
-  border-left-color: #1890ff; /* Blue */
-  background-color: rgba(24, 144, 255, 0.05); /* Light blue background */
+  border-left-color: var(--vp-c-note-1);
+  background-color: var(--vp-c-note-soft);
 }
 
 /* Important callout */
 .custom-block.github-alert.important {
-  border-left-color: #722ed1; /* Purple */
-  background-color: rgba(114, 46, 209, 0.05); /* Light purple background */
+  border-left-color: var(--vp-c-important-1);
+  background-color: var(--vp-c-important-soft);
 }
 
 /* Custom title styles */
@@ -234,25 +263,18 @@
 }
 
 .og-card {
-  text-align: center;
-  margin: 20px auto;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  max-width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--vp-c-gray-soft);
+  border-radius: 16px;
+  margin: 1rem auto 3rem auto;
+  max-width: 100%;
 }
-.og-card img {
+
+.og-image {
+  width: 100%;
   max-width: 100%;
   height: auto;
   border-radius: 8px;
-  margin-bottom: 10px;
 }
-.og-card h2 {
-  font-size: 1.5em;
-  margin-bottom: 5px;
-}
-.og-card p {
-  color: #555;
-  font-size: 1em;
-}
-
