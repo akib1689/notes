@@ -18,7 +18,7 @@ To add a DNS record to Pi-hole, follow these steps:
 
 1. Click on **Local DNS** in the left-hand menu.
 
-    ![Local DNS](../public/images/pihole-local-dns.png)
+    ![Local DNS](/public/images/pihole-local-dns.png)
 
 1. Scroll down to the **DNS records** section and click on **Add a new domain**. Be sure to select a fake domain name that is not in use on the internet, such as `local` or `lan`. if you use a say `.com` domain, you will not be able to access the real domain from your local network.
 

@@ -120,7 +120,16 @@ export default defineConfig({
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/akib1689' }
-    ]
+    ],
+
+    lastUpdated: {
+      text: 'Last Updated at',
+      formatOptions: {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      }
+    },
   },
 
   rewrites: {

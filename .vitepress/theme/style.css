@@ -232,3 +232,27 @@
   margin-left: 8px; /* Optional: Add some spacing between the search bar and the keys */
   flex-shrink: 0;   /* Prevents the keys from shrinking */
 }
+
+.og-card {
+  text-align: center;
+  margin: 20px auto;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-width: 600px;
+}
+.og-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.og-card h2 {
+  font-size: 1.5em;
+  margin-bottom: 5px;
+}
+.og-card p {
+  color: #555;
+  font-size: 1em;
+}
+

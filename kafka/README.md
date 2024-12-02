@@ -25,7 +25,7 @@ Here, we will discuss the following topics:
 
 Our finished architecture will look like this:
 
-![Kafka Architecture](../public/images/kafka-architecture.png)
+![Kafka Architecture](/public/images/kafka-architecture.png)
 
 ## Installation
 

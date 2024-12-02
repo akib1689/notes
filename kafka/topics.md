@@ -22,7 +22,7 @@ A partition is a unit of parallelism. A topic can have multiple partitions. Each
 
 So, partition can be thought of mulltiple channels of a single topic that lives in different brokers. This way, if one broker goes down, the other brokers can still serve the topic.
 
-![Kafka Topic Partitions](../public/images/kafka-partition.png)
+![Kafka Topic Partitions](/public/images/kafka-partition.png)
 
 > [!Important]
 > So, how does kafka decide which partition to write to when a record is published to a topic?
