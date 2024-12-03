@@ -48,3 +48,58 @@ In such cases, we can use Hashicorp Vault to store the credentials. The applicat
 - kubectl CLI installed on your local machine
 
 In the next section, we will learn how to deploy Hashicorp Vault on Kubernetes using the official Helm chart.
+
+## Installating Vault on Kubernetes
+
+To install Vault on Kubernetes, we will use the official Helm chart. The Helm chart provides a simple way to deploy Vault on Kubernetes. The Helm chart provides a way to configure Vault using the `values.yaml` file.
+
+To install Vault on Kubernetes, follow the steps below:
+
+### Step 1: Add the Hashicorp Helm repository
+
+To install Vault using Helm, you need to add the Hashicorp Helm repository. To add the Hashicorp Helm repository, run the command below:
+
+```bash
+helm repo add hashicorp https://helm.releases.hashicorp.com
+```
+
+To verify that the Hashicorp Helm repository has been added, run the command below:
+
+```bash
+helm repo list
+```
+
+You can also search for the Hashicorp Helm chart by running the command below:
+
+```bash
+helm search repo hashicorp/vault
+```
+
+### Step 2: Install Vault using Helm
+
+To install Vault on Kubernetes using Helm, run the command below:
+
+```bash
+helm install vault hashicorp/vault --set "server.dev.enabled=true" --set "server.dev.devRootToken=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+```
+
+In the command above, we are installing Vault on Kubernetes using the Hashicorp Helm chart. We are enabling the development mode and setting the development root token.
+
+### Step 3: Accessing the Vault UI
+
+To access the Vault UI, you need to port-forward the Vault service to your local machine. To port-forward the Vault service, run the command below:
+
+```bash
+kubectl port-forward service/vault 8200:8200
+```
+
+To access the Vault UI, open your browser and navigate to `http://localhost:8200`. You will be prompted to enter the root token. Enter the root token you set in the previous command.
+
+> [!CAUTION]
+> This is the development mode of Vault. The development mode is not recommended for production use. The development mode is meant for testing and development purposes only.
+
+In the next section, we will learn how to deploy Vault in production mode on Kubernetes.
+
+## Conclusion
+
+In this section, we learned how to deploy Hashicorp Vault on Kubernetes using the official Helm chart. We also learned how to access the Vault UI and set the root token. In the next section, we will learn how to deploy Vault in production mode on Kubernetes.

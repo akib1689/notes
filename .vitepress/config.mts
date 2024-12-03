@@ -115,9 +115,9 @@ export default defineConfig({
             items: [
               { text: 'Overview', link: '/vault/' },
               { text: 'Deployments', items: [
-                { text: 'Vault in Kubernetes', link: '/vault/deploy-dev' },
                 { text: 'Stand-alone Vault', link: '/vault/deploy-standalone' },
-                { text: 'High Availability', link: '/vault/deploy-ha' },
+                { text: 'Attach Storage', link: '/vault/attach-storage' },
+                { text: 'Auto Unseal', link: '/vault/auto-unseal' },
               ]}
             ]
           }
