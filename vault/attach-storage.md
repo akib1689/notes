@@ -131,9 +131,9 @@ kubectl get pvc
 
 It should show the PVC created by the Helm chart. The PVC should have the size, mount path, storage class, and access mode set in the `override-values.yaml` file.
 
-Now, first we need to initialize and unseal the vault server. Follow this guide to initialize and unseal the vault server: [Initializing and Unsealing Vault](./deploy-standalone/#installing-vault-in-standalone-mode)
+Now, first we need to initialize and unseal the vault server. Follow this guide to initialize and unseal the vault server: [Initializing and Unsealing Vault](/vault/deploy-standalone/#installing-vault-in-standalone-mode)
 
-After you have initialized and unsealed the vault server, you should put some secrets in the vault server. Follow this guide to put secrets in the vault server: [Putting Secrets in Vault](./deploy-standalone/#step-5-put-secrets-in-the-vault)
+After you have initialized and unsealed the vault server, you should put some secrets in the vault server. Follow this guide to put secrets in the vault server: [Putting Secrets in Vault](/vault/deploy-standalone/#step-5-put-secrets-in-the-vault)
 
 Now After you have put some secrets in the vault server, you can verify that the data is stored in the PVC. To verify that the data is stored in the PVC, run the command below:
 

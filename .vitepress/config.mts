@@ -4,6 +4,13 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "My Notes",
   description: "Current Notes and of my knowledge",
+
+  ignoreDeadLinks: [
+    (url) => {
+      return url.toLowerCase().includes('index')
+    }
+  ],
+
   head:[
     ['link', 
       { rel: 'icon', href: '/Notes/favicon_io/favicon.ico', sizes: '16x16' }

@@ -1,21 +1,3 @@
----
-head:
-  - - meta
-    - property: og:title
-      content: Azure Key Vault
-  - - meta
-    - property: og:description
-      content: Tutorial on how to provision an azure key vault using Open Tofu.
-  - - meta
-    - property: og:image
-      content: 
-    - property: og:url
-      content: https://akib1689.github.io/Notes/azure/azure-key-vault/
-  - - meta
-    - name: twitter:card
-      content: summary
----
-
 # Azure Key Vault
 
 Azure Key Vault is a cloud service for securely storing and accessing secrets. It provides a centralized cloud service for storing application secrets, such as passwords, connection strings, and certificates. Azure Key Vault helps to safeguard cryptographic keys and secrets used by cloud applications and services.
