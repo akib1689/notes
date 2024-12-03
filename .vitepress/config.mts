@@ -109,6 +109,17 @@ export default defineConfig({
               { text: 'Add DNS Record', link: '/pihole/add-dns-record' },
               { text: 'Install Pi-hole', link: '/pihole/install-pihole' }
             ]
+          },
+          {
+            text: 'Hashicorp Vault',
+            items: [
+              { text: 'Overview', link: '/vault/' },
+              { text: 'Deployments', items: [
+                { text: 'Vault in Kubernetes', link: '/vault/deploy-dev' },
+                { text: 'Stand-alone Vault', link: '/vault/deploy-standalone' },
+                { text: 'High Availability', link: '/vault/deploy-ha' },
+              ]}
+            ]
           }
         ]
       }
