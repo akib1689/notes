@@ -8,7 +8,7 @@ head:
       content: A brief introduction to Hashicorp Vault.
   - - meta
     - property: og:image
-      content: 
+      content: https://akib1689.github.io/Notes/images/vault-on-kubernetes.png
     - property: og:url
       content: https://akib1689.github.io/Notes/vault/
   - - meta

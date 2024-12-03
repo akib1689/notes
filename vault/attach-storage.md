@@ -8,7 +8,7 @@ head:
       content: Tutorial on how to attach storage to Hashicorp Vault.
   - - meta
     - property: og:image
-      content: 
+      content: https://akib1689.github.io/Notes/images/vault-on-kubernetes.png
     - property: og:url
       content: https://akib1689.github.io/Notes/vault/attach-storage/
   - - meta

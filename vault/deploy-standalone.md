@@ -8,7 +8,7 @@ head:
       content: A brief introduction to deploying Hashicorp Vault in Standalone Mode.
   - - meta
     - property: og:image
-      content: 
+      content: https://akib1689.github.io/Notes/images/vault-on-kubernetes.png
     - property: og:url
       content: https://akib1689.github.io/Notes/vault/deploy-standalone/
   - - meta
@@ -179,20 +179,24 @@ Example of the keys and the root token:
 
 ```json
 {
-  "keys": [
-    "ecfb4ef59f9a2570f856c471cd3b0580e2b7d99962d5c9af7a25b80138affe935a",
-    "807e9bbfb984c631becc526c621c9852f82d88b2347f7398ef7af3c1fbfbbe9fd0",
-    "561a7ff6b44b88f96a2d9faca1ae514d1557008ce19283dcfe2fb746ed4f0f7d94",
-    "3671e9e817177d79d3c004e0745e5f1d1a5cbfcd9fd6ad22505d4bc538176fa3f9",
-    "313fffc1c848276fffe1e3fcfce4d3472d104cda466227ca155e4f693cfbaa36b9"
-  ],
-  "keys_base64": [
+  "unseal_keys_b64": [
     "7PtO9Z+aJXD4VsRxzTsFgOK32Zli1cmveiW4ATiv/pNa",
     "gH6bv7mExjG+zFJsYhyYUvgtiLI0f3OY73rzwfv7vp/Q",
     "Vhp/9rRLiPlqLZ+soa5RTRVXAIzhkoPc/i+3Ru1PD32U",
     "NnHp6BcXfXnTwATgdF5fHRpcv82f1q0iUF1LxTgXb6P5",
     "MT//wchIJ2//4eP8/OTTRy0QTNpGYifKFV5PaTz7qja5"
   ],
+  "unseal_keys_hex": [
+    "ecfb4ef59f9a2570f856c471cd3b0580e2b7d99962d5c9af7a25b80138affe935a",
+    "807e9bbfb984c631becc526c621c9852f82d88b2347f7398ef7af3c1fbfbbe9fd0",
+    "561a7ff6b44b88f96a2d9faca1ae514d1557008ce19283dcfe2fb746ed4f0f7d94",
+    "3671e9e817177d79d3c004e0745e5f1d1a5cbfcd9fd6ad22505d4bc538176fa3f9",
+    "313fffc1c848276fffe1e3fcfce4d3472d104cda466227ca155e4f693cfbaa36b9"
+  ],
+  "unseal_shares": 5,
+  "unseal_threshold": 3,
+  "recovery_keys_b64": [],
+  "recovery_keys_hex": [],
   "root_token": "s.p3L38qZwmnHUgIHR1MBmACfd"
 }
 ```
@@ -217,20 +221,24 @@ The command above will initialize the Vault server. The output will look like th
 
 ```json
 {
-  "keys": [
-    "ecfb4ef59f9a2570f856c471cd3b0580e2b7d99962d5c9af7a25b80138affe935a",
-    "807e9bbfb984c631becc526c621c9852f82d88b2347f7398ef7af3c1fbfbbe9fd0",
-    "561a7ff6b44b88f96a2d9faca1ae514d1557008ce19283dcfe2fb746ed4f0f7d94",
-    "3671e9e817177d79d3c004e0745e5f1d1a5cbfcd9fd6ad22505d4bc538176fa3f9",
-    "313fffc1c848276fffe1e3fcfce4d3472d104cda466227ca155e4f693cfbaa36b9"
-  ],
-  "keys_base64": [
+  "unseal_keys_b64": [
     "7PtO9Z+aJXD4VsRxzTsFgOK32Zli1cmveiW4ATiv/pNa",
     "gH6bv7mExjG+zFJsYhyYUvgtiLI0f3OY73rzwfv7vp/Q",
     "Vhp/9rRLiPlqLZ+soa5RTRVXAIzhkoPc/i+3Ru1PD32U",
     "NnHp6BcXfXnTwATgdF5fHRpcv82f1q0iUF1LxTgXb6P5",
     "MT//wchIJ2//4eP8/OTTRy0QTNpGYifKFV5PaTz7qja5"
   ],
+  "unseal_keys_hex": [
+    "ecfb4ef59f9a2570f856c471cd3b0580e2b7d99962d5c9af7a25b80138affe935a",
+    "807e9bbfb984c631becc526c621c9852f82d88b2347f7398ef7af3c1fbfbbe9fd0",
+    "561a7ff6b44b88f96a2d9faca1ae514d1557008ce19283dcfe2fb746ed4f0f7d94",
+    "3671e9e817177d79d3c004e0745e5f1d1a5cbfcd9fd6ad22505d4bc538176fa3f9",
+    "313fffc1c848276fffe1e3fcfce4d3472d104cda466227ca155e4f693cfbaa36b9"
+  ],
+  "unseal_shares": 5,
+  "unseal_threshold": 3,
+  "recovery_keys_b64": [],
+  "recovery_keys_hex": [],
   "root_token": "s.p3L38qZwmnHUgIHR1MBmACfd"
 }
 ```
