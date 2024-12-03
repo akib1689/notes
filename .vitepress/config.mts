@@ -54,6 +54,7 @@ export default defineConfig({
         items: [
           {
             text: 'Android',
+            collapsed: true,
             items: [
               { text: 'Overview', link: '/android/' },
               { text: 'Setup Bottom Navigation', link: '/android/bottom-navigation-view-setup' },
@@ -61,6 +62,7 @@ export default defineConfig({
           },
           {
             text: 'Azure',
+            collapsed: true,
             items: [
               { text: 'Overview', link: '/azure/' },
               { text: 'Describe Cloud Concepts', link: '/azure/part-1' },
@@ -70,18 +72,22 @@ export default defineConfig({
           },
           {
             text: 'CI/CD',
+            collapsed: true,
             items: [
               { text: 'Overview', link: '/ci-cd/' }
             ]
           },
           {
             text: 'Kafka',
+            collapsed: true,
             items: [
               { text: 'Overview', link: '/kafka/' },
               { text: 'Topics', link: '/kafka/topics' },
               { text: 'Producers', link: '/kafka/producers' },
               { text: 'Consumers', link: '/kafka/consumers' },
-              { text: 'Deployment', items: [
+              { text: 'Deployment', 
+                collapsed: true, 
+                items: [
                 { text: 'Deploy and Initial setup', link: '/kafka/deploy-part-1' },
                 { text: 'Access Kafka from outside', link: '/kafka/deploy-part-2' },
                 { text: 'Attaching persistent storage', link: '/kafka/deploy-part-3' },
@@ -90,6 +96,7 @@ export default defineConfig({
           },
           {
             text: 'Kubernetes',
+            collapsed: true,
             items: [
               { text: 'Multinode Cluster', link: '/kubernetes/multinode-cluster' },
               { text: 'Overview', link: '/kubernetes/' }
@@ -97,6 +104,7 @@ export default defineConfig({
           },
           {
             text: 'Linux Administration',
+            collapsed: true,
             items: [
               { text: 'Auto Mount Disk', link: '/linux-administration/auto-mount-disk' },
               { text: 'Install Docker', link: '/linux-administration/install-docker' },
@@ -105,6 +113,7 @@ export default defineConfig({
           },
           {
             text: 'Pi-hole',
+            collapsed: true,
             items: [
               { text: 'Add DNS Record', link: '/pihole/add-dns-record' },
               { text: 'Install Pi-hole', link: '/pihole/install-pihole' }
@@ -112,9 +121,12 @@ export default defineConfig({
           },
           {
             text: 'Hashicorp Vault',
+            collapsed: true,
             items: [
               { text: 'Overview', link: '/vault/' },
-              { text: 'Deployments', items: [
+              { text: 'Deployments',
+                collapsed: true,
+                items: [
                 { text: 'Stand-alone Vault', link: '/vault/deploy-standalone' },
                 { text: 'Attach Storage', link: '/vault/attach-storage' },
                 { text: 'Auto Unseal', link: '/vault/auto-unseal' },
