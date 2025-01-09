@@ -8,13 +8,17 @@
         "type": "tabs",
         "children": [
           {
-            "id": "c93d08e9d8599db6",
+            "id": "d9b3bf17f4a21b76",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "dns/buying-dns.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "buying-dns"
             }
           }
         ]
@@ -169,14 +173,18 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "c93d08e9d8599db6",
+  "active": "5d71e6ddfca842d4",
   "lastOpenFiles": [
-    "monitoring/README.md",
-    "kafka/README.md",
+    "dns",
+    "kafka/deploy-part-3.md",
+    "dns/buying-dns.md",
+    "kafka/producers.md",
     "kafka/deploy-part-2.md",
     "kafka/deploy-part-1.md",
     "kafka/consumers.md",
-    "kafka/producers.md",
+    "kafka/connect.md",
+    "monitoring/README.md",
+    "kafka/README.md",
     "monitoring/prometheus.md",
     "linux-administration/auto-mount-disk.md",
     "monitoring/README.md.md",
