@@ -8,9 +8,9 @@ head:
       content: A brief introduction to deploying Hashicorp Vault in Standalone Mode.
   - - meta
     - property: og:image
-      content: https://akib1689.github.io/Notes/images/vault-on-kubernetes.png
+      content: https://akibur-rahman.com/notes/images/vault-on-kubernetes.png
     - property: og:url
-      content: https://akib1689.github.io/Notes/vault/deploy-standalone/
+      content: https://akibur-rahman.com/notes/vault/deploy-standalone/
   - - meta
     - name: twitter:card
       content: summary

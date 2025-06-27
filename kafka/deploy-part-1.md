@@ -8,10 +8,10 @@ head:
       content: Learn how to deploy a Kafka cluster on Kubernetes using Strimzi.
   - - meta
     - property: og:image
-      content: https://akib1689.github.io/Notes/images/kafka-on-kubernetes.png
+      content: https://akibur-rahman.com/notes/images/kafka-on-kubernetes.png
   - - meta
     - property: og:url
-      content: https://akib1689.github.io/Notes/kafka/deploy-part-1
+      content: https://akibur-rahman.com/notes/kafka/deploy-part-1
   - - meta
     - name: twitter:card
       content: summary
