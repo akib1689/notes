@@ -39,6 +39,10 @@ export default defineConfig({
 
   base: '/notes/',
 
+  sitemap: {
+    hostname: 'https://akibur-rahman.com/notes/'
+  },
+
 
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
